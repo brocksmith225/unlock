@@ -1,0 +1,11 @@
+.login-center {
+    display: block;
+    position: absolute;
+    top: 50vh;
+    padding: 10px;
+    transform: translateY(-70%);
+}
+
+.btn {
+    font-weight: bold;
+}
