@@ -1,6 +1,32 @@
 /* global $ */
+/* global sha256 */
 
-$("#login-submit").click(function(event){
+function loginSubmit() {
     event.preventDefault();
-    alert("submit");
+    var inputs = $("#login-form input");
+    var values = {};
+    inputs.each(function() {
+        if (this.name == "password") {
+            values[this.name] = sha256(this.value);
+        } else {
+            values[this.name] = this.value;
+        }
+    });
+    console.log(values);
+    $.ajax({
+       url: "../python/login.py",
+       type: "POST",
+       dataType: "text",
+       data: JSON.stringify(values),
+       contentType: "application/json",
+       success: login
+    });
+}
+
+function login() {
+    
+}
+
+$('.animated').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+    $(this).removeClass("animated");
 });

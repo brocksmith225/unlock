@@ -7,29 +7,33 @@
         <link rel="stylesheet" href="bootstrap/css/bootstrap-grid.min.css"/>
         <link rel="stylesheet" href="bootstrap/css/bootstrap-reboot.min.css"/>
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
-        <script href="jquery/jquery-3.2.1.min.js"></script>
-        <script href="bootstrap/js/bootstrap.min.js"></script>
-        <script href="scripts/login.js"></script>
+        <link rel="stylesheet" href="mdb/css/mdb.css"/>
     </head>
     
     <body>
         <div class="container login-center">
             <div class="row">
                 <div class="col-4 offset-4">
-                    <h2 class="text-center">Login</h2>
-                    <br/>
-                    <form>
-                        <h5>Username</h5>
-                        <input class="form-control" type="text" name="username" placeholder="username" autofocus/>
-                        <br/>
-                        <h5>Password</h5>
-                        <input class="form-control" type="password" name="password" placeholder="password"/>
-                        <br/>
-                        <input id="login-submit" class="btn btn-default btn-block btn-primary" type="submit" value="SUBMIT"/>
+                    <h2 class="text-center animated fadeIn">Login</h2>
+                    <form id="login-form" method="post" onsubmit="loginSubmit()">
+                        <h5 class="animated slideInDown">Username</h5>
+                        <input id="login-form-element" class="form-control login-form-element animated flipInX" type="text" name="username" placeholder="username"/>
+                        <h5 class="animated slideInDown">Password</h5>
+                        <input class="form-control login-form-element animated flipInX" type="password" name="password" placeholder="password"/>
+                        <input id="login-submit" class="btn btn-default btn-block btn-primary animated flipInX" type="submit" name="submit" value="SUBMIT"/>
                     </form>
                 </div>
             </div>
         </div>
+        
+        <script src="jquery/jquery-3.2.1.min.js"></script>
+        <script src="tether/tether-1.3.3/dist/js/tether.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="node_modules/convert-hex/convert-hex.js"></script>
+        <script src="node_modules/convert-string/convert-string.js"></script>
+        <script src="node_modules/sha256/lib/sha256.js"></script>
+        <script src="mdb/js/mdb.js"></script>
+        <script src="scripts/login.js"></script>
     </body>
     
 </html>
