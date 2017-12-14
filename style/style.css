@@ -1,0 +1,154 @@
+.login-center {
+    display: block;
+    position: absolute;
+    top: 50vh;
+    padding: 10px;
+    transform: translateY(-70%);
+}
+
+.btn {
+    font-weight: bold;
+}
+
+input[type=text],
+input[type=password] {
+    border: none;
+    background: #CCC;
+    margin-bottom: 15px;
+}
+
+input[type=text]:active,
+input[type=text]:focus,
+input[type=password]:active,
+input[type=password]:focus {
+    border-radius: 0px;
+    box-shadow: 0px 2px rgb(2, 117, 216);
+    animation: fade-background 0.48s;
+}
+
+input[type=submit] {
+    margin-top: 25px;
+}
+
+@keyframes fade-background {
+    from    {background: #CCC;}
+    to      {background: #FFF;}
+}
+
+.ui {
+    position: fixed;
+    width: 100vw;
+    background-color: #e9e9e9;
+    padding: 10px 30px;
+    line-height: 60px;
+}
+
+.ui-top {
+    height: 80px;
+    top: 0;
+}
+
+.ui-bottom {
+    height: 30px;
+    bottom: 0;
+    text-align: center;
+}
+
+.ui-bottom *  {
+    display: none !important;
+}
+
+.color-red {
+    color: #e0100d;
+}
+
+.ui-bottom:hover {
+    height: 80px;
+}
+
+.ui-bottom:hover * {
+    display: inline-block !important;
+}
+
+.ui h1 {
+    margin: 0;
+    height: 60px;
+    line-height: 50px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.menu-link {
+    display: inline-block;
+    float: right;
+    color: #AAA;
+    font-size: 36px;
+    text-align: middle;
+    line-height: 50px;
+}
+
+.menu-link:hover,
+.menu-link:active {
+    text-decoration: none;
+    color: #8f8f8f !important;
+}
+
+.menu-link:visited {
+    color: #AAA;
+    text-decoration: none;
+}
+
+.hint-button {
+    display: inline-block;
+    float: right;
+    background-color: #3a82f2;
+    border: 3px solid #09429b;
+    border-radius: 10px;
+    color: #09429b;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 55px;
+    font-weight: bold;
+    font-size: 40px;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+}
+
+.hint-button:hover {
+    font-size: 50px;
+}
+
+input.flag-input,
+input.flag-input:hover,
+input.flag-input:active,
+input.flag-input:focus {
+    background-color: white !important;
+    padding: 10px;
+    border: 3px solid #CCC;
+    outline: none;
+    box-shadow: none !important;
+    height: 40px;
+    background: white !important;
+    animation: none;
+}
+
+.flag-input::placeholder {
+    color: #AAA;
+}
+
+.flag-check,
+.flag-check:focus,
+.flag-check:hover,
+.flag-check:active {
+    outline: none;
+    border: none;
+    color: #09429b;
+    background-color: #3a82f2;
+    font-weight: bold;
+    height: 40px;
+    width: 120px;
+    line-height: 20px;
+    margin-bottom: 15px;
+}
