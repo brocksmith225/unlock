@@ -27,6 +27,22 @@ function login() {
     
 }
 
-$('.animated').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-    $(this).removeClass("animated");
+var mouseOver = false;
+
+$(".ui-bottom").mouseover(function() {
+    mouseOver = true;
+    $(".ui-bottom").addClass("active");
+});
+
+$(".ui-bottom").mouseout(function() {
+    mouseOver = false;
+    if (!$(".flag-input").is(":focus")) {
+        $(".ui-bottom").removeClass("active");
+    }
+});
+
+$(".flag-input").focusout(function() {
+    if (!mouseOver) {
+        $(".ui-bottom").removeClass("active");
+    }
 });

@@ -2,26 +2,29 @@
 <html lang="en">
     
     <head>
-        <title>Unlock</title>
-        <link href="https://fonts.googleapis.com/css?family=Roboto:700" rel="stylesheet">
+        <title>Login</title>
         <link rel="stylesheet" href="style/style.css"/>
         <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap-grid.min.css"/>
         <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap-reboot.min.css"/>
         <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="vendor/hover/css/hover.min.css"/>
         <link rel="stylesheet" href="vendor/mdb/css/mdb.css"/>
-        <link rel="stylesheet" href="vendor/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css"/>
     </head>
-
+    
     <body>
-        <div class="ui ui-top">
-            <h1 class="color-red">Level 1</h1>
-            <a href="index.html" class="menu-link">menu</a>
-        </div>
-        <div class="ui ui-bottom">
-            <input class="flag-input" type="text" placeholder="flag"></input>
-            <input class="flag-check" type="button" value="CHECK"></input>
-            <div class="hint-button">?</div>
+        <div class="container login-center">
+            <div class="row">
+                <div class="col-4 offset-4">
+                    <h2 class="text-center animated fadeIn">Login</h2>
+                    <form id="login-form" method="post" onsubmit="loginSubmit()">
+                        <h5 class="animated slideInDown">Username</h5>
+                        <input id="login-form-element" class="form-control login-form-element animated flipInX" type="text" name="username" placeholder="username"/>
+                        <h5 class="animated slideInDown">Password</h5>
+                        <input class="form-control login-form-element animated flipInX" type="password" name="password" placeholder="password"/>
+                        <input id="login-submit" class="btn btn-default btn-block btn-primary animated flipInX" type="submit" name="submit" value="SUBMIT"/>
+                    </form>
+                </div>
+            </div>
         </div>
         
         <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
