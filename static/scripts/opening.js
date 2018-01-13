@@ -73,6 +73,5 @@ $("#create-account-back-button").click(function() {
 });
 
 $(".login-form-element").click(function() {
-    console.log("select");
     $(this).select();
-});s
+});
