@@ -13,17 +13,11 @@
     </head>
     
     <body>
-        <div class="container login-center">
+        <div class="container vert-center">
             <div class="row">
-                <div class="col-4 offset-4">
-                    <h2 class="text-center animated fadeIn">Login</h2>
-                    <form id="login-form" method="post" onsubmit="loginSubmit()">
-                        <h5 class="animated slideInDown">Username</h5>
-                        <input id="login-form-element" class="form-control login-form-element animated flipInX" type="text" name="username" placeholder="username"/>
-                        <h5 class="animated slideInDown">Password</h5>
-                        <input class="form-control login-form-element animated flipInX" type="password" name="password" placeholder="password"/>
-                        <input id="login-submit" class="btn btn-default btn-block btn-primary animated flipInX" type="submit" name="submit" value="SUBMIT"/>
-                    </form>
+                <div class="col-8 offset-2">
+                    <h2 class="text-center warning">Could not create account at the moment. Please try again later</h2>
+                    <a href="/" class="btn btn-default btn-block btn-primary warning-back-button">Back</a>
                 </div>
             </div>
         </div>
@@ -35,7 +29,6 @@
         <script src="../static/vendor/node_modules/convert-string/convert-string.js"></script>
         <script src="../static/vendor/node_modules/sha256/lib/sha256.js"></script>
         <script src="../static/vendor/mdb/js/mdb.js"></script>
-        <script src="../static/scripts/login.js"></script>
     </body>
     
 </html>

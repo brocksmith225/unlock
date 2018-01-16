@@ -352,3 +352,22 @@ input.flag-input:focus {
     height: 40vh;
     width: 30vw;
 }
+
+.warning {
+    background-color: #ea0e0e;
+    display: block;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+}
+
+.warning-back-button {
+    font-size: 20pt !important;
+    text-transform: uppercase;
+}
+
+.vert-center {
+    position: absolute;
+    top: 50vh;
+    transform: translateY(-50%);
+}
