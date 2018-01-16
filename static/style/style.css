@@ -63,7 +63,7 @@ input[type=submit] {
 }
 
 .ui-bottom *  {
-    display: none !important;
+    display: none;
 }
 
 .color-red {
@@ -76,7 +76,7 @@ input[type=submit] {
 }
 
 .ui-bottom.active * {
-    display: inline-block !important;
+    display: inline-block;
 }
 
 .ui h1 {
@@ -108,7 +108,6 @@ input[type=submit] {
 }
 
 .hint-button {
-    display: inline-block;
     float: right;
     background-color: #3a82f2;
     border: 3px solid #09429b;
@@ -127,6 +126,19 @@ input[type=submit] {
 
 .hint-button:hover {
     font-size: 65px;
+}
+
+.hint {
+    display: none;
+    background-color: #3a82f2;
+    border: 3px solid #09429b;
+    font-size: 14pt;
+    padding: 0 10px;
+    color: #09429b;
+    border-radius: 20px;
+    position: absolute;
+    right: 10px;
+    bottom: 90px;
 }
 
 input.flag-input,

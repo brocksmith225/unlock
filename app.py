@@ -5,6 +5,10 @@ app = Flask(__name__, template_folder='pages')
 
 @app.route("/")
 def opening():
-    return render_template("opening.html", title="Unlock")
+    return render_template("opening.html")
+    
+@app.route("/ui")
+def ui():
+    return render_template("ui.html")
 
 app.run(host="0.0.0.0", port=8080, debug=True)
