@@ -30,12 +30,12 @@ def createAccount():
     
     try:
         cur.execute(sql)
-    except:
-        return render_template("unsuccessful-create-account.html")
+    except Exception, e:
+        return render_template("login.html", success=False)
     
     conn.commit()
     conn.close()
-    return render_template("login.html")
+    return render_template("login.html", success=True)
     
 @app.route("/test")
 def test():

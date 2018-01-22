@@ -353,12 +353,32 @@ input.flag-input:focus {
     width: 30vw;
 }
 
+.success {
+    background-color: #14cc26;
+    display: block;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    font-size: 16pt;
+    text-align: center;
+    position: absolute;
+    top: 1vw;
+    left: 1vw;
+    width: 98vw;
+}
+
 .warning {
     background-color: #ea0e0e;
     display: block;
     padding: 20px;
     border-radius: 10px;
     color: white;
+    font-size: 16pt;
+    text-align: center;
+    position: absolute;
+    top: 1vw;
+    left: 1vw;
+    width: 98vw;
 }
 
 .warning-back-button {
@@ -370,4 +390,9 @@ input.flag-input:focus {
     position: absolute;
     top: 50vh;
     transform: translateY(-50%);
+}
+
+.animated {
+    transform: translateZ(0) perspective(1000);
+    filter: blur(0px);
 }
