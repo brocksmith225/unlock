@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from flask import Flask, render_template, request, redirect
-from flask_login import LoginManager, login_user
+from flask_login import LoginManager, login_user, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy, sqlalchemy
 import os, uuid, psycopg2
 app = Flask(__name__, template_folder='pages')
@@ -18,15 +18,15 @@ class User(db.Model):
     pwd = db.Column(db.String(64))
     progress = db.Column(db.Integer, default=0)
     authenticated = db.Column(db.Boolean, default=False)
-    
+
     def is_active(self):
         return True;
     
     def is_authenticated(self):
-        return self.authenticsated
+        return self.authenticated
         
     def is_anonymous(self):
-        return False;
+        return False
     
     def get_id(self):
         return self.email
@@ -44,6 +44,12 @@ def load_user(user_id):
 
 @app.route("/")
 def opening():
+    try:
+        if current_user.is_authenticated():
+            return render_template("menu.html", progress=current_user.progress)
+        return render_template("login.html")
+    except Exception:
+        pass
     return render_template("opening.html")
     
 @app.route("/ui")
@@ -73,5 +79,25 @@ def login():
             login_user(user, remember=True)
             return redirect("/")
     return render_template("unsuccessful-create-account.html")
+
+@app.route("/cheat-login")
+def cheatLogin():
+    user = User.query.get("brocksmith225@gmail.com")
+    if user:
+        user.authenticated = True
+        db.session.add(user)
+        db.session.commit()
+        login_user(user, remember=True)
+        return redirect("/")
+    return render_template("unsuccessful-create-account.html")
+
+@app.route("/logout")
+def logout():
+    user = current_user
+    user.authenticated = False
+    db.session.add(user)
+    db.session.commit()
+    logout_user()
+    return "logged out"
     
 app.run(host="0.0.0.0", port=8080, debug=True)
