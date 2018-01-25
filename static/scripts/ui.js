@@ -21,6 +21,11 @@ $(".flag-input").focusout(function() {
     }
 });
 
+$(".flag-input").focus(function() {
+    $("#hint").hide();
+    hintActive = false;
+});
+
 $("#hint-button").click(function() {
    if (hintActive) {
        $("#hint").hide();
