@@ -78,18 +78,7 @@ def login():
             db.session.commit()
             login_user(user, remember=True)
             return redirect("/")
-    return render_template("unsuccessful-create-account.html")
-
-@app.route("/cheat-login")
-def cheatLogin():
-    user = User.query.get("brocksmith225@gmail.com")
-    if user:
-        user.authenticated = True
-        db.session.add(user)
-        db.session.commit()
-        login_user(user, remember=True)
-        return redirect("/")
-    return render_template("unsuccessful-create-account.html")
+    return render_template("unsuccessful-login.html")
 
 @app.route("/logout")
 def logout():

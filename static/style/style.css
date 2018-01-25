@@ -2,6 +2,10 @@ body {
     overflow: hidden;
 }
 
+body.scrollable {
+    overflow: auto;
+}
+
 .login-center {
     display: block;
     position: absolute;
@@ -395,4 +399,69 @@ input.flag-input:focus {
 .animated {
     transform: translateZ(0) perspective(1000);
     filter: blur(0px);
+}
+
+.top-bar {
+    padding: 20px;
+    background-color: #bbb;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    box-shadow: 2px 5px 10px #888;
+    line-height: 40px;
+    z-index: 100;
+}
+
+.small-logo {
+    position: relative;
+    margin: -13px 5px -7px 20px;
+    height: 60px;
+    width: 55.8px;
+    display: inline;
+    float: left;
+}
+
+.small-logo .unlock {
+    animation-name: unlock;
+    animation-duration: 0.3s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.top-bar h1 {
+    color: #0275d8;
+    margin: 0;
+    line-height: 40px;
+    vertical-align: bottom;
+    font-size: 26pt;
+}
+
+#level-select {
+    padding-top: 130px;
+    padding-bottom: 50px;
+}
+
+#level-select * {
+    display: inline-block;
+}
+
+.level-select {
+    cursor: pointer;
+    padding: 20px !important;
+    border-radius: 10px;
+    background-color: #ddd;
+    text-align: center;
+    margin: 5px 5px;
+    width: calc(50% - 10px);
+}
+
+.level-select-img {
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-image: url("../img/placeholder.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
 }
