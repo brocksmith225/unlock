@@ -11,7 +11,7 @@ $(".ui-bottom").mouseover(function() {
 $(".ui-bottom").mouseout(function() {
     mouseOver = false;
     if (!$(".flag-input").is(":focus") && !hintActive) {
-        //$(".ui-bottom").removeClass("active");
+        $(".ui-bottom").removeClass("active");
     }
 });
 
@@ -35,3 +35,8 @@ $("#hint-button").click(function() {
        hintActive = true;
    }
 });
+
+/*$(function() {
+    page = $.post("level-loader", {level: "1", page: "index.html", key: "super secret key"});
+    $("#page-loader").append(page);
+});*/

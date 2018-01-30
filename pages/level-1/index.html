@@ -4,6 +4,7 @@
     <head>
         <title>Unlock</title>
         <link rel="stylesheet" href="../static/style/style.css"/>
+        <link rel="stylesheet" href="../static/style/level-1.css"/>
         <link rel="stylesheet" href="../static/vendor/bootstrap/css/bootstrap-grid.min.css"/>
         <link rel="stylesheet" href="../static/vendor/bootstrap/css/bootstrap-reboot.min.css"/>
         <link rel="stylesheet" href="../static/vendor/bootstrap/css/bootstrap.min.css"/>
@@ -14,32 +15,21 @@
     </head>
     
     <body class="scrollable">
-        <div class="top-bar">
-            <svg id="main-logo" class="small-logo" width="100" height="129" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 129" preserveAspectRation="xMidYMid meet">
-                <rect x="20px" y="33px" width="12px" height="16" stroke-width="0px" fill="#454747" />
-                <rect class="unlock" x="68px" y="33px" width="12px" height="16" stroke-width="0px" fill="#454747" />
-                <path d="M 26 34 C 26 -2, 74 -2, 74 34" stroke="#454747" stroke-width="12px" fill="transparent" />
-                 <rect x="0px" y="48px" width="100px" height="80px" rx="15px" ry="15px" stroke-width="0px" fill="#101111" />
-                <path d="M 50 106 L 50 91" stroke="#0275d8" stroke-width="5px" stroke-linecap="round" fill="transparent" />
-                <path d="M 42 101 C 31 94, 36 76, 50 76" stroke="#0275d8" stroke-width="5px" stroke-linecap="round" fill="transparent" />
-                <path d="M 58 101 C 69 94, 64 76, 50 76" stroke="#0275d8" stroke-width="5px" stroke-linecap="round" fill="transparent" />
-            </svg>
-            <h1>Unlock</h1>
-        </div>
-        
-        <div id="level-select" class="container">
-            <div class="level-select">
-                <div id="level-select-img-1" class="level-select-img"></div>
-                <h1>Level 1</h1>
-            </div><div class="level-select">
-                <div id="level-select-img-2" class="level-select-img"></div>
-                <h1>Level 2</h1>
-            </div><div class="level-select">
-                <div id="level-select-img-3" class="level-select-img"></div>
-                <h1>Level 3</h1>
-            </div><div class="level-select">
-                <div id="level-select-img-4" class="level-select-img"></div>
-                <h1>Level 4</h1>
+        <div class="title">B-Mail</div>
+        <navbar>
+            <button class="btn btn-default btn-primary btn-block">Compose</button>
+            <ul>
+                <li class="active">Inbox</li>
+                <li>Starred</li>
+                <li>Sent</li>
+                <li>Drafts</li>
+            </ul>
+        </navbar>
+        <div id="email-display">
+            <div class="email active">
+                <i class="fa fa-star"></i>
+                <h1>Test Email</h1>
+                <h3>Test email body.</h3>
             </div>
         </div>
         
@@ -50,7 +40,7 @@
         <script src="../static/vendor/node_modules/convert-string/convert-string.js"></script>
         <script src="../static/vendor/node_modules/sha256/lib/sha256.js"></script>
         <script src="../static/vendor/mdb/js/mdb.js"></script>
-        <script src="../static/scripts/menu.js"></script>
+        <script src="../static/scripts/level-1.js"></script>
     </body>
     
 </html>

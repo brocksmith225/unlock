@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from flask import Flask, render_template, request, redirect
-from flask_login import LoginManager, login_user, current_user, logout_user
+from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 from flask_sqlalchemy import SQLAlchemy, sqlalchemy
 import os, uuid, psycopg2
 app = Flask(__name__, template_folder='pages')
@@ -16,7 +16,7 @@ class User(db.Model):
     
     email = db.Column(db.String(40), unique=True, primary_key=True)
     pwd = db.Column(db.String(64))
-    progress = db.Column(db.Integer, default=0)
+    progress = db.Column(db.Integer, default=1)
     authenticated = db.Column(db.Boolean, default=False)
 
     def is_active(self):
@@ -47,14 +47,31 @@ def opening():
     try:
         if current_user.is_authenticated():
             return render_template("menu.html", progress=current_user.progress)
-        return render_template("login.html")
+        return render_template("opening.html")
     except Exception:
         pass
     return render_template("opening.html")
     
 @app.route("/ui")
+@login_required
 def ui():
-    return render_template("ui.html")
+    level = request.args.get("level")
+    if (int(level) <= int(current_user.progress)):
+        return render_template("ui.html", level=level)
+    return redirect("/")
+    
+@app.route("/level-loader")
+def levelLoader():
+    return "test"
+    return request.data["key"]
+    if (request.data["key"] == "super secret key"):
+        return render_template("level-" + request.data["level"] + "/" + request.data["page"])
+    return ""
+    
+@app.route("/level-1")
+@login_required
+def level1():
+    return render_template("level-1/index.html")
     
 @app.route("/create-account", methods=["POST"])
 def createAccount():
