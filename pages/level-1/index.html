@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="../static/vendor/bootstrap/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="../static/vendor/hover/css/hover.min.css"/>
         <link rel="stylesheet" href="../static/vendor/mdb/css/mdb.css"/>
-        <link rel="stylesheet" href="../static/vendor/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css"/>
+        <link rel="stylesheet" href="../static/vendor/fontawesome/font-awesome.min.css"/>
         <link rel="icon" href="../static/favicon.ico"/>
     </head>
     
@@ -19,17 +19,20 @@
         <navbar>
             <button class="btn btn-default btn-primary btn-block">Compose</button>
             <ul>
-                <li class="active">Inbox</li>
-                <li>Starred</li>
-                <li>Sent</li>
-                <li>Drafts</li>
+                <li class="active" data-category="inbox">Inbox</li>
+                <li data-category="starred">Starred</li>
+                <li data-category="sent">Sent</li>
+                <li data-category="drafts">Drafts</li>
             </ul>
         </navbar>
-        <div id="email-display">
-            <div class="email active">
-                <i class="fa fa-star"></i>
-                <h1>Test Email</h1>
-                <h3>Test email body.</h3>
+        
+        <div id="email-display" class="inbox">
+            <div class="email email-inbox email-starred">
+                <i class="fa star-toggle"></i>
+                <h1>Welcome</h1>
+                <h3>Welcome to B-Mail, the fourth best email client in the world. While we may not be G-Mail, we guarantee that with B-Mail, your account will be completely secure.<br/><br/>Thanks for choosing B-Mail,<br/>B-Mail Development Team</h3>
+                <h2>Dev Team</h2>
+                <div class="exit-button">X</div>
             </div>
         </div>
         

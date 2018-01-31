@@ -62,7 +62,7 @@ navbar ul li:hover {
 
 .email {
     display: none;
-    padding: 10px;
+    padding: 9px 20px 10px 20px;
     border-bottom: 2px solid #ccc;
     background-color: #f6f6f6;
     cursor: pointer;
@@ -70,7 +70,19 @@ navbar ul li:hover {
     line-height: 30px;
 }
 
-.email.active {
+.inbox .email-inbox {
+    display: block;
+}
+
+.starred .email-starred {
+    display: block;
+}
+
+.sent .email-sent {
+    display: block;
+}
+
+.drafts .email-drafts {
     display: block;
 }
 
@@ -86,6 +98,18 @@ navbar ul li:hover {
     line-height: 30px;
     height: 30px;
     width: 16vw;
+    overflow: hidden;
+}
+
+.email h2 {
+    font-size: 14pt;
+    margin: 0;
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 30px;
+    height: 30px;
+    width: 8vw;
+    overflow: hidden;
 }
 
 .email h3 {
@@ -97,4 +121,78 @@ navbar ul li:hover {
     height: 30px;
     color: #6d7172;
     font-style: italic;
+    width: calc(57vw - 60px);
+    overflow: hidden;
+}
+
+.star-toggle {
+    height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+    display: inline-block;
+    padding-top: 6px;
+    margin-right: 10px;
+    width: 20px;
+}
+
+.email-starred .star-toggle:before {
+    content: "\f005";
+}
+
+.star-toggle:before {
+    content: "\f006";
+    font-size: 23px;
+    line-height: 30px
+    vertical-align: middle;
+}
+
+.email-full {
+    position: absolute;
+    z-index: 1000;
+    width: 85vw;
+    min-height: 100vh;
+    padding: 20px 40px;
+    cursor: auto;
+}
+
+.email-full:hover {
+    background-color: #f6f6f6;
+}
+
+.email-full .star-toggle {
+    display: none;
+}
+
+.email-full h1 {
+    font-size: 36pt;
+    height: 60px;
+    line-height: 100%;
+    width: calc(85vw - 40px);
+}
+
+.email-full h2 {
+    font-size: 24pt;
+    margin-left: 10px;
+    height: 50px;
+    line-height: 100%;
+    width: calc(85vw - 50px);
+}
+
+.email-full h3 {
+    font-size: 14pt;
+    margin-left: 20px;
+    height: auto;
+    vertical-align: top;
+    width: calc(85vw - 60px);
+}
+
+.exit-button {
+    display: none;
+    font-size: 24pt;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #d2d2d2;
 }

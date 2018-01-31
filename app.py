@@ -71,7 +71,7 @@ def levelLoader():
 @app.route("/level-1")
 @login_required
 def level1():
-    return render_template("level-1/index.html")
+    return render_template("level-1/" + request.args.get("page"))
     
 @app.route("/create-account", methods=["POST"])
 def createAccount():

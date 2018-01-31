@@ -147,7 +147,7 @@ input[type=submit] {
 }
 
 .hint-button:hover {
-    font-size: 65px;
+    background-color: #025aa5;
 }
 
 .hint {
