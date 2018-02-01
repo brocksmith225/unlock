@@ -35,12 +35,37 @@ class User(db.Model):
     def get(user_id):
         return 1
         
+class BMailUser(db.Model):
+    
+    __tablename__ = "bmail_users"
+    
+    account = db.Column(db.String(40), unique=True, primary_key=True)
+    pwd = db.Column(db.String(64))
+
+    def is_active(self):
+        return True;
+    
+    def is_authenticated(self):
+        return self.authenticated
+        
+    def is_anonymous(self):
+        return False
+    
+    def get_id(self):
+        return self.account
+        
+    @staticmethod
+    def get(user_id):
+        return 1
+        
 db.create_all()
 db.session.commit()
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(user_id)
+    if User.query.get(user_id):
+        return User.query.get(user_id)
+    return BMailUser.query.get(user_id)
 
 @app.route("/")
 def opening():
@@ -51,27 +76,6 @@ def opening():
     except Exception:
         pass
     return render_template("opening.html")
-    
-@app.route("/ui")
-@login_required
-def ui():
-    level = request.args.get("level")
-    if (int(level) <= int(current_user.progress)):
-        return render_template("ui.html", level=level)
-    return redirect("/")
-    
-@app.route("/level-loader")
-def levelLoader():
-    return "test"
-    return request.data["key"]
-    if (request.data["key"] == "super secret key"):
-        return render_template("level-" + request.data["level"] + "/" + request.data["page"])
-    return ""
-    
-@app.route("/level-1")
-@login_required
-def level1():
-    return render_template("level-1/" + request.args.get("page"))
     
 @app.route("/create-account", methods=["POST"])
 def createAccount():
@@ -105,5 +109,62 @@ def logout():
     db.session.commit()
     logout_user()
     return "logged out"
+    
+@app.route("/ui")
+@login_required
+def ui():
+    level = request.args.get("level")
+    if (int(level) <= int(current_user.progress)):
+        return render_template("ui.html", level=level)
+    return redirect("/")
+    
+@app.route("/level-loader")
+def levelLoader():
+    return render_template("level-" + request.args.get("level") + "/" + request.args.get("page") + ".html")
+    return ""
+    
+@app.route("/level-1")
+@login_required
+def level1():
+    if (int(current_user.progress) > 0):
+        return render_template("ui.html", level=1, page="index")
+    return redirect("/")
+    
+@app.route("/level-1/create-account")
+@login_required
+def level1CreateAccount():
+    if (int(current_user.progress) > 0):
+        pwd = request.form["password"]
+        account = request.form["account"]
+        db_user = BMailUser.query.get(email)
+        if db_user:
+            return redirect("/level-1")
+        db.session.add(user)
+        db.session.commit()
+        return redirect("/level-1")
+    return redirect("/")
+
+@app.route("/level-1/login")
+@login_required
+def level1Login():
+    if (int(current_user.progress) > 0):
+        user = BMailUser.query.get(request.form["account"])
+        if user:
+            if request.form["password"] == user.pwd:
+                return redirect("/level-1/inbox", account=request.form["account"])
+        return render_template("ui.html", level=1, page="index")
+    return redirect("/")
+
+@app.route("/level-1/inbox")
+@login_required
+def level1Inbox():
+    return str(request.args.get("account"))
+
+@app.route("/level-1/<page>")
+@login_required
+def level1Subpage(page):
+    if (int(current_user.progress > 0)):
+        return render_template("ui.html", level=1, page=page)
+    return redirect("/")
     
 app.run(host="0.0.0.0", port=8080, debug=True)

@@ -3,7 +3,6 @@
     
     <head>
         <title>Unlock</title>
-        <link rel="stylesheet" href="../static/style/style.css"/>
         <link rel="stylesheet" href="../static/style/level-1.css"/>
         <link rel="stylesheet" href="../static/vendor/bootstrap/css/bootstrap-grid.min.css"/>
         <link rel="stylesheet" href="../static/vendor/bootstrap/css/bootstrap-reboot.min.css"/>
@@ -15,27 +14,12 @@
     </head>
     
     <body class="scrollable">
-        <div class="title">B-Mail</div>
-        <navbar>
-            <button class="btn btn-default btn-primary btn-block">Compose</button>
-            <ul>
-                <li class="active" data-category="inbox">Inbox</li>
-                <li data-category="starred">Starred</li>
-                <li data-category="sent">Sent</li>
-                <li data-category="drafts">Drafts</li>
-            </ul>
-        </navbar>
-        
-        <div id="email-display" class="inbox">
-            <div class="email email-inbox email-starred">
-                <i class="fa star-toggle"></i>
-                <h1>Welcome</h1>
-                <h3>Welcome to B-Mail, the fourth best email client in the world. While we may not be G-Mail, we guarantee that with B-Mail, your account will be completely secure.<br/><br/>Thanks for choosing B-Mail,<br/>B-Mail Development Team</h3>
-                <h2>Dev Team</h2>
-                <div class="exit-button">X</div>
-            </div>
+        <div class="start-controls">
+            <h1>B-Mail</h1>
+            <button id="login" class="btn btn-primary btn-block btn-default start-button">Login</button>
+            <button id="create-account" class="btn btn-primary btn-block btn-default start-button">Create Account</button>
         </div>
-        
+
         <script src="../static/vendor/jquery/jquery-3.2.1.min.js"></script>
         <script src="../static/vendor/tether/tether-1.3.3/dist/js/tether.min.js"></script>
         <script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>

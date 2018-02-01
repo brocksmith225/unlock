@@ -22,8 +22,18 @@ $(".email").click(function() {
 });
 
 $(".exit-button").click(function() {
+    $(".email-full h3").after($(".email-full h2"));
     $(".email").removeClass("email-full");
-    $(this).children("h3").after($(this).children("h2"));
     $(".exit-button").hide();
     event.stopPropagation();
+});
+
+$("#compose").click(function() {
+   alert("This feature is only for B-Mail Prime. For now, please enjoy looking at your emails on our free platform. Sorry for any inconvenience and thank you for choosing B-Mail.") 
+});
+
+$(function() {
+   setTimeout(function() {
+       $(".large-title").hide();
+   }, 666);
 });

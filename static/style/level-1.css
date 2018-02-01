@@ -1,3 +1,21 @@
+body {
+    background-color: #f9f9f9;
+}
+
+.large-title {
+    z-index: 2000;
+    color: #0275d8;
+    width: 100vw;
+    height: 100vh;
+    line-height: 100vh;
+    vertical-align: middle;
+    text-align: center;
+    position: absolute;
+    font-size: 20vw;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
 .title {
     background-color: #e9e9e9;
     border-bottom: 3px solid #ccc;
@@ -195,4 +213,68 @@ navbar ul li:hover {
     top: 10px;
     right: 15px;
     color: #d2d2d2;
+}
+
+.animated-delay-1-4 {
+    animation-delay: 0.25s;
+}
+
+.animated-delay-1-3 {
+    animation-delay: 0.33s;
+}
+
+.animated-delay-1-2 {
+    animation-delay: 0.5s;
+}
+
+.animated-delay-2-3 {
+    animation-delay: 0.66s;
+}
+
+.animated-delay-3-4 {
+    animation-delay: 0.76s;
+}
+
+.animated-delay-1 {
+    animation-delay: 1s;
+}
+
+.animated-delay-2 {
+    animation-delay: 2s;
+}
+
+.animated-delay-3 {
+    animation-delay: 3s;
+}
+
+.animated-delay-4 {
+    animation-delay: 4s;
+}
+
+.animated-delay-5 {
+    animation-delay: 5s;
+}
+
+.start-controls {
+    width: 50vw;
+    position: absolute;
+    left: 25vw;
+    top: 50vh;
+    transform: translateY(-50%);
+}
+
+.start-controls h1 {
+    font-size: 8vw;
+    color: #0275d8;
+    margin-bottom: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.start-button {
+    font-weight: bold !important;
+    font-size: 3vw !important;
+    cursor: pointer;
+    margin-bottom: 10px;
 }

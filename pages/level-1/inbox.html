@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <title>Unlock</title>
+        <link rel="stylesheet" href="../static/style/style.css"/>
+        <link rel="stylesheet" href="../static/style/level-1.css"/>
+        <link rel="stylesheet" href="../static/vendor/bootstrap/css/bootstrap-grid.min.css"/>
+        <link rel="stylesheet" href="../static/vendor/bootstrap/css/bootstrap-reboot.min.css"/>
+        <link rel="stylesheet" href="../static/vendor/bootstrap/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../static/vendor/hover/css/hover.min.css"/>
+        <link rel="stylesheet" href="../static/vendor/mdb/css/mdb.css"/>
+        <link rel="stylesheet" href="../static/vendor/fontawesome/font-awesome.min.css"/>
+        <link rel="icon" href="../static/favicon.ico"/>
+    </head>
+    
+    <body class="scrollable">
+        <div class="large-title animated zoomOut animated-delay-2-3">B-MAIl</div>
+        
+        <div id="content" class="animated fadeIn animated-delay-3-4">
+            <div class="title">B-Mail</div>
+            <navbar>
+                <button id="compose" class="btn btn-default btn-primary btn-block">Compose</button>
+                <ul>
+                    <li class="active" data-category="inbox">Inbox</li>
+                    <li data-category="starred">Starred</li>
+                    <li data-category="sent">Sent</li>
+                    <li data-category="drafts">Drafts</li>
+                </ul>
+            </navbar>
+            
+            <div id="email-display" class="inbox">
+                <div class="email email-inbox email-starred">
+                    <i class="fa star-toggle"></i>
+                    <h1>Welcome</h1>
+                    <h3>Welcome to B-Mail, the fourth best email client in the world. While we may not be G-Mail, we guarantee that with B-Mail, your account will be completely secure.<br/><br/>Thanks for choosing B-Mail,<br/>B-Mail Development Team</h3>
+                    <h2>Dev Team</h2>
+                    <div class="exit-button">X</div>
+                </div>
+            </div>
+        </div>
+        
+        <script src="../static/vendor/jquery/jquery-3.2.1.min.js"></script>
+        <script src="../static/vendor/tether/tether-1.3.3/dist/js/tether.min.js"></script>
+        <script src="../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../static/vendor/node_modules/convert-hex/convert-hex.js"></script>
+        <script src="../static/vendor/node_modules/convert-string/convert-string.js"></script>
+        <script src="../static/vendor/node_modules/sha256/lib/sha256.js"></script>
+        <script src="../static/vendor/mdb/js/mdb.js"></script>
+        <script src="../static/scripts/level-1.js"></script>
+    </body>
+    
+</html>
