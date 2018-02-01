@@ -37,3 +37,39 @@ $(function() {
        $(".large-title").hide();
    }, 666);
 });
+
+$(".form-exit-button").click(function() {
+    $(".start-form").hide();
+});
+
+$("#login").click(function() {
+    $("#login-form").show();
+});
+
+$("#create-account").click(function() {
+    $("#create-account-form").show();
+});
+
+$("#create-account-form").submit(function() {
+    event.preventDefault();
+    pwd = sha256($("#create-account-form input[name='password']").val());
+    confPwd = sha256($("#create-account-form input[name='confirm-password']").val());
+    account = $("#create-account-form input[name='account']").val();
+    if (pwd === confPwd) {
+        $("#create-account-submit input[name='account']").val(account);
+        $("#create-account-submit input[name='password']").val(pwd);
+        $("#create-account-submit").submit();
+    } else {
+        $("#create-account-form input[name='password']").val("");
+        $("#create-account-form input[name='confirm-password']").val("");
+    }
+});
+
+$("#login-form").submit(function() {
+    event.preventDefault();
+    pwd = sha256($("#login-form input[name='password']").val());
+    account = $("#login-form input[name='account']").val();
+    $("#login-submit input[name='account']").val(account);
+    $("#login-submit input[name='password']").val(pwd);
+    $("#login-submit").submit();
+});

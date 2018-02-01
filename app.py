@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 from flask_sqlalchemy import SQLAlchemy, sqlalchemy
 import os, uuid, psycopg2
@@ -10,6 +10,7 @@ login_manager.init_app(app);
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://ubuntu:Unl0ck@localhost/unlock"
 app.config["SECRET_KEY"] = "something unique and secret"
 db = SQLAlchemy(app)
+url_prefix = "https://capstone-brocksmith225.c9users.io/"
 
 class User(db.Model):
     
@@ -99,7 +100,7 @@ def login():
             db.session.add(user)
             db.session.commit()
             login_user(user, remember=True)
-            return redirect("/")
+            return redirect(url_prefix)
     return render_template("unsuccessful-login.html")
 
 @app.route("/logout")
@@ -117,7 +118,7 @@ def ui():
     level = request.args.get("level")
     if (int(level) <= int(current_user.progress)):
         return render_template("ui.html", level=level)
-    return redirect("/")
+    return redirect(url_prefix)
     
 @app.route("/level-loader")
 def levelLoader():
@@ -129,32 +130,34 @@ def levelLoader():
 def level1():
     if (int(current_user.progress) > 0):
         return render_template("ui.html", level=1, page="index")
-    return redirect("/")
+    return redirect(url_prefix)
     
-@app.route("/level-1/create-account")
+@app.route("/level-1/index")
+@login_required
+def level1Index():
+    return render_template("level-1/index.html")
+    
+@app.route("/level-1/create-account", methods=["POST"])
 @login_required
 def level1CreateAccount():
-    if (int(current_user.progress) > 0):
-        pwd = request.form["password"]
-        account = request.form["account"]
-        db_user = BMailUser.query.get(email)
-        if db_user:
-            return redirect("/level-1")
-        db.session.add(user)
-        db.session.commit()
-        return redirect("/level-1")
-    return redirect("/")
+    pwd = request.form["password"]
+    account = request.form["account"]
+    user = BMailUser(account=account, pwd=pwd)
+    db_user = BMailUser.query.get(account)
+    if db_user:
+        return redirect(url_prefix + "level-1/index")
+    db.session.add(user)
+    db.session.commit()
+    return redirect(url_prefix + "level-1/index")
 
-@app.route("/level-1/login")
+@app.route("/level-1/login", methods=["POST"])
 @login_required
 def level1Login():
-    if (int(current_user.progress) > 0):
-        user = BMailUser.query.get(request.form["account"])
-        if user:
-            if request.form["password"] == user.pwd:
-                return redirect("/level-1/inbox", account=request.form["account"])
-        return render_template("ui.html", level=1, page="index")
-    return redirect("/")
+    user = BMailUser.query.get(request.form["account"])
+    if user:
+        if request.form["password"] == user.pwd:
+            return redirect(url_prefix + "level-1/inbox?account=" + user.account)
+    return render_template("ui.html", level=1, page="index")
 
 @app.route("/level-1/inbox")
 @login_required
@@ -164,22 +167,20 @@ def level1Inbox():
 @app.route("/level-1/<page>")
 @login_required
 def level1Subpage(page):
-    if (int(current_user.progress > 0)):
-        return render_template("ui.html", level=1, page=page)
-    return redirect("/")
-    
+    return render_template("level-1/" + page + ".html")
+
 @app.route("/screenshot/<page>")
 @login_required
 def screenshot(page):
     if current_user.email == "brocksmith225@gmail.com":
         return render_template(page + ".html")
-    return redirect("/")
+    return redirect(url_prefix)
     
 @app.route("/screenshot/<folder>/<page>")
 @login_required
 def screenshot2(folder, page):
     if current_user.email == "brocksmith225@gmail.com":
         return render_template(folder + "/" + page + ".html")
-    return redirect("/")
+    return redirect(url_prefix)
     
 app.run(host="0.0.0.0", port=8080, debug=True)
