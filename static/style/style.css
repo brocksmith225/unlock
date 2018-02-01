@@ -294,6 +294,46 @@ input.flag-input:focus {
     animation-delay: 5s;
 }
 
+.animated-duration-1-4 {
+    animation-duration: 0.25s;
+}
+
+.animated-duration-1-3 {
+    animation-duration: 0.33s;
+}
+
+.animated-duration-1-2 {
+    animation-duration: 0.5s;
+}
+
+.animated-duration-2-3 {
+    animation-duration: 0.66s;
+}
+
+.animated-duration-3-4 {
+    animation-duration: 0.76s;
+}
+
+.animated-duration-1 {
+    animation-duration: 1s;
+}
+
+.animated-duration-2 {
+    animation-duration: 2s;
+}
+
+.animated-duration-3 {
+    animation-duration: 3s;
+}
+
+.animated-duration-4 {
+    animation-duration: 4s;
+}
+
+.animated-duration-5 {
+    animation-duration: 5s;
+}
+
 .main-logo {
     position: absolute;
     height: 50vh;
@@ -546,6 +586,10 @@ input.flag-input:focus {
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+}
+
+#level-select-img-1 {
+    background-image: url("../img/level-1.png");
 }
 
 .btn-primary {

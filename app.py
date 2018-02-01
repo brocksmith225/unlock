@@ -157,12 +157,12 @@ def level1Login():
     if user:
         if request.form["password"] == user.pwd:
             return redirect(url_prefix + "level-1/inbox?account=" + user.account)
-    return render_template("ui.html", level=1, page="index")
+    return redirect(url_prefix + "level-1/index")
 
 @app.route("/level-1/inbox")
 @login_required
 def level1Inbox():
-    return str(request.args.get("account"))
+    return render_template("level-1/inbox", account=request.args.get("account"))
 
 @app.route("/level-1/<page>")
 @login_required
