@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 from flask_sqlalchemy import SQLAlchemy, sqlalchemy
 import os, uuid, psycopg2
+
 app = Flask(__name__, template_folder='pages')
 login_manager = LoginManager()
 login_manager.init_app(app);
@@ -165,6 +166,20 @@ def level1Inbox():
 def level1Subpage(page):
     if (int(current_user.progress > 0)):
         return render_template("ui.html", level=1, page=page)
+    return redirect("/")
+    
+@app.route("/screenshot/<page>")
+@login_required
+def screenshot(page):
+    if current_user.email == "brocksmith225@gmail.com":
+        return render_template(page + ".html")
+    return redirect("/")
+    
+@app.route("/screenshot/<folder>/<page>")
+@login_required
+def screenshot2(folder, page):
+    if current_user.email == "brocksmith225@gmail.com":
+        return render_template(folder + "/" + page + ".html")
     return redirect("/")
     
 app.run(host="0.0.0.0", port=8080, debug=True)
