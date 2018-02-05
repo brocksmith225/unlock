@@ -3,6 +3,7 @@
 
 $("#create-account-form").submit(function() {
     event.preventDefault();
+    $("#create-account-form label").removeClass("active");
     pwd = sha256($("#create-account-form input[name='password']").val());
     confPwd = sha256($("#create-account-form input[name='confirm-password']").val());
     email = $("#create-account-form input[name='email']").val();

@@ -166,6 +166,7 @@ navbar ul li:hover {
 
 .email-full {
     position: absolute;
+    top: 0;
     z-index: 1000;
     width: 85vw;
     min-height: 100vh;

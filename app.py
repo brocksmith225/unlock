@@ -20,9 +20,10 @@ class User(db.Model):
     pwd = db.Column(db.String(64))
     progress = db.Column(db.Integer, default=1)
     authenticated = db.Column(db.Boolean, default=False)
+    difficulty = db.Column(db.Integer, default=0)
 
     def is_active(self):
-        return True;
+        return True
     
     def is_authenticated(self):
         return self.authenticated
@@ -45,7 +46,7 @@ class BMailUser(db.Model):
     pwd = db.Column(db.String(64))
 
     def is_active(self):
-        return True;
+        return True
     
     def is_authenticated(self):
         return self.authenticated
@@ -162,7 +163,11 @@ def level1Login():
 @app.route("/level-1/inbox")
 @login_required
 def level1Inbox():
-    return render_template("level-1/inbox", account=request.args.get("account"))
+    emails = [dict() for x in range(1)]
+    emails[0]["title"] = "Welcome"
+    emails[0]["body"] = "Welcome to B-Mail, the ninth best email client in the world. While we may not be G-Mail, we guarantee that with B-Mail, your account will be completely secure.<br/><br/>Thanks for choosing B-Mail,<br/>B-Mail Development Team"
+    emails[0]["sender"] = "Dev Team"
+    return render_template("level-1/inbox.html", account=request.args.get("account"), emails=emails)
 
 @app.route("/level-1/<page>")
 @login_required

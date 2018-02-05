@@ -595,3 +595,18 @@ input.flag-input:focus {
 .btn-primary {
     background-color: #0275d8;
 }
+
+#create-account-form label {
+    width: 32%;
+    margin: 0 0.5%;
+    text-transform: uppercase;
+}
+
+#create-account-form label.selected {
+    background-color: #025aa5;
+    border-color: #01549b;
+}
+
+#create-account-form label input {
+    display: none;
+}

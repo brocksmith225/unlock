@@ -51,6 +51,7 @@ $("#login-back-button").click(function() {
 });
 
 $("#create-account-start-button").click(function() {
+    $("#create-account-form label").removeClass("active");
     $("#openingPage").removeClass();
     $("#opening-page").addClass("animated slideOutLeft");
     $("#create-account-page").removeClass();
@@ -63,6 +64,7 @@ $("#create-account-start-button").click(function() {
 });
 
 $("#create-account-back-button").click(function() {
+    $("#create-account-form label").removeClass("active");
     $("#opening-page").removeClass();
     $("#opening-page").show();
     $("#opening-page").addClass("animated slideInLeft");
@@ -74,4 +76,15 @@ $("#create-account-back-button").click(function() {
 
 $(".login-form-element").click(function() {
     $(this).select();
+});
+
+$("#create-account-form input[type='submit']").click(function() {
+    setTimeout(function() {
+        $("#create-account-form label").removeClass("active");
+    }, 100);
+});
+
+$("#create-account-form label").click(function() {
+   $("#create-account-form label").removeClass("selected");
+   $(this).addClass("selected");
 });
