@@ -30,6 +30,15 @@
             </navbar>
             
             <div id="email-display" class="inbox">
+                {% for email in emails %}
+                    <div class="email {{ email['tags'] }}">
+                        <i class="fa star-toggle"></i>
+                        <h1>{{ email["title"] }}</h1>
+                        <h3>{% autoescape false %}{{ email["body"] }}{% endautoescape %}</h3>
+                        <h2>{{ email["sender"] }}</h2>
+                        <div class="exit-button">X</div>
+                    </div>
+                {% endfor %}
                 <div class="email email-inbox email-starred">
                     <i class="fa star-toggle"></i>
                     <h1>Welcome</h1>
@@ -37,15 +46,6 @@
                     <h2>Dev Team</h2>
                     <div class="exit-button">X</div>
                 </div>
-                {% for email in emails %}
-                    <div class="email email-inbox email-starred">
-                        <i class="fa star-toggle"></i>
-                        <h1>{{ email["title"] }}</h1>
-                        <h3>{{ email["body"] }}</h3>
-                        <h2>{{ email["sender"] }}</h2>
-                        <div class="exit-button">X</div>
-                    </div>
-                {% endfor %}
             </div>
         </div>
         

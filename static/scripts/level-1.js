@@ -29,7 +29,7 @@ $(".exit-button").click(function() {
 });
 
 $("#compose").click(function() {
-   alert("This feature is only for B-Mail Prime. For now, please enjoy looking at your emails on our free platform. Sorry for any inconvenience and thank you for choosing B-Mail.") 
+   alert("This feature is only for B-Mail Prime. For now, please enjoy looking at your emails on our free platform. If you want to upgrade to B-Mail prime, simply email us at dev.team@bmail.com. Sorry for any inconvenience and thank you for choosing B-Mail.") 
 });
 
 $(function() {

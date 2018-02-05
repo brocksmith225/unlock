@@ -167,6 +167,7 @@ def level1Inbox():
     emails[0]["title"] = "Welcome"
     emails[0]["body"] = "Welcome to B-Mail, the ninth best email client in the world. While we may not be G-Mail, we guarantee that with B-Mail, your account will be completely secure.<br/><br/>Thanks for choosing B-Mail,<br/>B-Mail Development Team"
     emails[0]["sender"] = "Dev Team"
+    emails[0]["tags"] = "email-inbox"
     return render_template("level-1/inbox.html", account=request.args.get("account"), emails=emails)
 
 @app.route("/level-1/<page>")
