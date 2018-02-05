@@ -3,13 +3,13 @@
     
     <head>
         <title>Unlock</title>
-        <link rel="stylesheet" href="/static/style/style.css"/>
         <link rel="stylesheet" href="/static/vendor/bootstrap/css/bootstrap-grid.min.css"/>
         <link rel="stylesheet" href="/static/vendor/bootstrap/css/bootstrap-reboot.min.css"/>
         <link rel="stylesheet" href="/static/vendor/bootstrap/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="/static/vendor/hover/css/hover.min.css"/>
         <link rel="stylesheet" href="/static/vendor/mdb/css/mdb.css"/>
         <link rel="stylesheet" href="/static/vendor/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css"/>
+        <link rel="stylesheet" href="/static/style/style.css"/>
         <link rel="icon" href="/static/favicon.ico"/>
     </head>
     
@@ -50,7 +50,7 @@
                 <h5>Password</h5>
                 <input class="form-control login-form-element" type="password" name="password" placeholder="password" autocomplete="new-password" min-length="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(){}\-_=+~`{}[\]|\\;:'<>,./?])(?!.*\s).*$" required/>
                 <input class="form-control login-form-element" type="password" name="confirm-password" placeholder="confirm password" autocomplete="new-password" min-length="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(){}\-_=+~`{}[\]|\\;:'<>,./?])(?!.*\s).*$" required/>
-                <label class="btn btn-default btn-primary selected">Easy<input type="radio" name="difficulty" value="0" required checked /></label><label class="btn btn-default btn-primary">Medium<input type="radio" name="difficulty" value="1" required selected /></label><label class="btn btn-default btn-primary">Hard<input type="radio" name="difficulty" value="2" required selected /></label>
+                <label class="btn btn-default btn-primary btn-ignore-active selected">Easy<input type="radio" name="difficulty" value="0" required checked /></label><label class="btn btn-default btn-primary btn-ignore-active">Medium<input type="radio" name="difficulty" value="1" required selected /></label><label class="btn btn-default btn-primary btn-ignore-active">Hard<input type="radio" name="difficulty" value="2" required selected /></label>
                 <input class="btn btn-default btn-block btn-primary" type="submit" name="submit" value="SUBMIT" />
             </form>
         </div>
@@ -61,6 +61,7 @@
         </form>
         
         <form id="create-account-submit" style="display:none;" method="POST" action="/create-account">
+            <input class="form-control login-form-element" type="text" name="difficulty" placeholder="difficulty" required/>
             <input class="form-control login-form-element" type="text" name="email" placeholder="email" required/>
             <input class="form-control login-form-element" type="text" name="password" placeholder="password" required/>
         </form>

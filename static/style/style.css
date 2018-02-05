@@ -15,7 +15,6 @@ body.scrollable {
 }
 
 .btn {
-    font-weight: bold;
     cursor: pointer;
 }
 
@@ -609,4 +608,9 @@ input.flag-input:focus {
 
 #create-account-form label input {
     display: none;
+}
+
+.btn-ignore-active.active {
+    background-color: #0275d8;
+    border-color: #0275d8;
 }

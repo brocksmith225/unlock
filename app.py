@@ -84,7 +84,8 @@ def opening():
 def createAccount():
     pwd = request.form["password"]
     email = request.form["email"]
-    user = User(email=email, pwd=pwd)
+    difficulty = request.form["difficulty"]
+    user = User(email=email, pwd=pwd, difficulty=difficulty)
     db_user = User.query.get(email)
     if db_user:
         return render_template("login.html", success=False)
