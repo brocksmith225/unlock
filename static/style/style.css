@@ -557,6 +557,11 @@ input.flag-input:focus {
     box-shadow: 3px 3px 6px #888;
 }
 
+.level-select.disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
 .level-select:active,
 .level-select:hover,
 .level-select:visited {

@@ -141,6 +141,9 @@ def level1CreateAccount():
         return redirect(url_prefix + "level-1/index")
     db.session.add(user)
     db.session.commit()
+    if int(current_user.level1_progress) == 0:
+        current_user.level1_progress = 1
+        db.session.commit()
     return redirect(url_prefix + "level-1/index")
 
 @app.route("/level-1/login", methods=["POST"])
@@ -149,6 +152,9 @@ def level1Login():
     user = BMailUser.query.get(request.form["account"])
     if user:
         if request.form["password"] == user.pwd:
+            if int(current_user.level1_progress) == 1 and str(request.form["account"]) == "dev.team":
+                current_user.level1_progress = 2
+                db.session.commit()
             return redirect(url_prefix + "level-1/inbox?account=" + user.account)
     return redirect(url_prefix + "level-1/index")
 
