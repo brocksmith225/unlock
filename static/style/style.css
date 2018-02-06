@@ -52,20 +52,7 @@ input[type=submit] {
     background-color: #bbb;
     padding: 10px 30px;
     line-height: 60px;
-    animation-name: shadowFadeOut !important;
-    animation-duration: 0.5s;
-    animation-fill-mode: forwards;
     z-index: 1000;
-}
-
-@keyframes shadowFadeIn {
-    from     {box-shadow: 2px 1px 2px #777;}
-    to       {box-shadow: 2px 5px 10px #777;}
-}
-
-@keyframes shadowFadeOut {
-    from     {box-shadow: 2px 4px 8px #777;}
-    to       {box-shadow: 2px 0px 0px #777;}
 }
 
 .ui-top {
@@ -77,6 +64,7 @@ input[type=submit] {
     animation: ui-lower 0.5s;
     height: 30px;
     bottom: 0;
+    box-shadow: 2px -4px 8px #777;
 }
 
 .ui-bottom *  {
@@ -89,6 +77,7 @@ input[type=submit] {
 
 .ui-bottom.active {
     animation: ui-raise 0.5s;
+    animation-fill-mode: forwards;
     line-height: 60px;
     height: 80px;
 }
@@ -514,9 +503,7 @@ input.flag-input:focus {
     width: 100vw;
     line-height: 40px;
     z-index: 100;
-    animation-name: shadowFadeIn;
-    animation-duration: 0.5s;
-    animation-fill-mode: forwards;
+    box-shadow: 2px 4px 8px #777;
 }
 
 .top-bar * {
