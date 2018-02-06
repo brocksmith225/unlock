@@ -269,3 +269,11 @@ navbar ul li:hover {
     cursor: pointer;
     font-weight: bold;
 }
+
+#logout {
+    width: calc(15vw - 40px);
+    position: absolute;
+    bottom: 20px;
+    font-size: 15pt;
+    vertical-align: middle;
+}

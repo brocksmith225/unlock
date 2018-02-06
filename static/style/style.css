@@ -601,3 +601,37 @@ input.flag-input:focus {
     background-color: #0275d8;
     border-color: #0275d8;
 }
+
+.progress-graph {
+    display: block !important;
+    margin-top: 10px;
+    height: 40px;
+}
+
+.progress-graph .progress-bar {
+    background-color: #999;
+    height: 7px;
+    margin-bottom: 10px;
+}
+
+.progress-graph .fa {
+    text-align: center;
+    font-size: 40px;
+    color: #999;
+}
+
+.progress-graph .progress-3 {
+    width: 15%;
+}
+
+.progress-graph .progress-4 {
+    width: 10%;
+}
+
+.progress-graph .fa.active {
+    color: #07b713; /*Green: 07b713, Blue: 0275d8*/
+}
+
+.progress-graph .progress-bar.active {
+    background-color: #07b713;
+}

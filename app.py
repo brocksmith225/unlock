@@ -19,6 +19,10 @@ class User(db.Model):
     email = db.Column(db.String(40), unique=True, primary_key=True)
     pwd = db.Column(db.String(64))
     progress = db.Column(db.Integer, default=1)
+    level1_progress = db.Column(db.Integer, default=0)
+    level2_progress = db.Column(db.Integer, default=0)
+    level3_progress = db.Column(db.Integer, default=0)
+    level4_progress = db.Column(db.Integer, default=0)
     authenticated = db.Column(db.Boolean, default=False)
     difficulty = db.Column(db.Integer, default=0)
 
@@ -74,7 +78,7 @@ def load_user(user_id):
 def opening():
     try:
         if current_user.is_authenticated():
-            return render_template("menu.html", progress=current_user.progress)
+            return render_template("menu.html", progress=current_user.progress, level1_progress=current_user.level1_progress, level2_progress=current_user.level2_progress, level3_progress=current_user.level3_progress, level4_progress=current_user.level4_progress)
         return render_template("opening.html")
     except Exception:
         pass
@@ -114,24 +118,11 @@ def logout():
     logout_user()
     return "logged out"
     
-@app.route("/ui")
+@app.route("/level-<level>")
 @login_required
-def ui():
-    level = request.args.get("level")
-    if (int(level) <= int(current_user.progress)):
-        return render_template("ui.html", level=level)
-    return redirect(url_prefix)
-    
-@app.route("/level-loader")
-def levelLoader():
-    return render_template("level-" + request.args.get("level") + "/" + request.args.get("page") + ".html")
-    return ""
-    
-@app.route("/level-1")
-@login_required
-def level1():
-    if (int(current_user.progress) > 0):
-        return render_template("ui.html", level=1, page="index")
+def level1(level):
+    if int(current_user.progress) >= int(level):
+        return render_template("ui.html", level=level, page="index")
     return redirect(url_prefix)
     
 @app.route("/level-1/index")
@@ -164,17 +155,33 @@ def level1Login():
 @app.route("/level-1/inbox")
 @login_required
 def level1Inbox():
-    emails = [dict() for x in range(1)]
-    emails[0]["title"] = "Welcome"
-    emails[0]["body"] = "Welcome to B-Mail, the ninth best email client in the world. While we may not be G-Mail, we guarantee that with B-Mail, your account will be completely secure.<br/><br/>Thanks for choosing B-Mail,<br/>B-Mail Development Team"
-    emails[0]["sender"] = "Dev Team"
-    emails[0]["tags"] = "email-inbox"
-    return render_template("level-1/inbox.html", account=request.args.get("account"), emails=emails)
+    conn = psycopg2.connect("dbname=unlock user=ubuntu")
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM bmail_emails;")
+    res = cur.fetchall()
+    cur.close()
+    conn.close()
+    emails = [dict() for x in range(len(res))]
+    account=request.args.get("account")
+    for i in range(0, len(res)):
+        if res[i][4] == account:
+            emails[i]["title"] = res[i][0]
+            emails[i]["body"] = res[i][1]
+            emails[i]["sender"] = res[i][2]
+            emails[i]["tags"] = res[i][3]
+    return render_template("level-1/inbox.html", account=account, emails=emails)
 
 @app.route("/level-1/<page>")
 @login_required
 def level1Subpage(page):
     return render_template("level-1/" + page + ".html")
+    
+@app.route("/level-1/info")
+@login_required
+def info():
+    if int(current_user.progress) > 1:
+        return render_template("info-pages/level-1.html")
+    return redirect("/")
 
 @app.route("/screenshot/<page>")
 @login_required
@@ -182,7 +189,7 @@ def screenshot(page):
     if current_user.email == "brocksmith225@gmail.com":
         return render_template(page + ".html")
     return redirect(url_prefix)
-    
+
 @app.route("/screenshot/<folder>/<page>")
 @login_required
 def screenshot2(folder, page):

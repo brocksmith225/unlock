@@ -1,7 +1,9 @@
 $("navbar ul li").click(function() {
     $("navbar ul li").removeClass("active");
     $(this).addClass("active");
+    $(".email-full h3").after($(".email-full h2"));
     $(".email").removeClass("email-full");
+    $(".exit-button").hide();
     $("#email-display").removeClass();
     $("#email-display").addClass($(this).attr("data-category"));
 });
