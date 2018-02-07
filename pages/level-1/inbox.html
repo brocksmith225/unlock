@@ -40,13 +40,15 @@
                         <div class="exit-button">X</div>
                     </div>
                 {% endfor %}
-                <div class="email email-inbox email-starred">
-                    <i class="fa star-toggle"></i>
-                    <h1>Welcome</h1>
-                    <h3>Welcome to B-Mail, the ninth best email client in the world. While we may not be G-Mail, we guarantee that with B-Mail, your account will be completely secure.<br/><br/>Thanks for choosing B-Mail,<br/>B-Mail Development Team</h3>
-                    <h2>Dev Team (dev.team@bmail.com)</h2>
-                    <div class="exit-button">X</div>
-                </div>
+                {% if account != "dev.team" %}
+                    <div class="email email-inbox email-starred">
+                        <i class="fa star-toggle"></i>
+                        <h1>Welcome</h1>
+                        <h3>Welcome to B-Mail, the ninth best email client in the world. While we may not be G-Mail, we guarantee that with B-Mail, your account will be completely secure.<br/><br/>So what's so great about B-Mail:<br/><ul><li>Secure Platform for Emails<ul><li>You use your email for personal information, and your personal information should be secure.</li></ul></li><li>Reachable Customer Service<ul><li>We are available to help you any time of the day.</li></ul></li><li>Frequent Updates<ul><li>There are many issues with our platform, so we will always be making changes.</li></ul></li><li>No Password Requirements<ul><li>Passwords are hard enough to remember without having to remember a different one for every site. Removing password requirements means that you can use whatever password you want, even our favorite, 'password'.</li></ul></li></ul><br/><br/>Thanks for choosing B-Mail,<br/>B-Mail Development Team</h3>
+                        <h2>Dev Team (dev.team@bmail.com)</h2>
+                        <div class="exit-button">X</div>
+                    </div>
+                {% endif %}
             </div>
         </div>
         

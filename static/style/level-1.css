@@ -157,6 +157,16 @@ navbar ul li:hover {
     content: "\f005";
 }
 
+.email-sent .star-toggle,
+.email-drafts .star-toggle {
+    display: none;
+}
+
+.email-sent h3,
+.email-drafts h3 {
+    width: 57vw;
+}
+
 .star-toggle:before {
     content: "\f006";
     font-size: 23px;
@@ -170,6 +180,7 @@ navbar ul li:hover {
     z-index: 1000;
     width: 85vw;
     min-height: 100vh;
+    height: auto;
     padding: 20px 40px;
     cursor: auto;
 }

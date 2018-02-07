@@ -93,9 +93,11 @@ def createAccount():
     db_user = User.query.get(email)
     if db_user:
         return render_template("login.html", success=False)
+    user.authenticated = True
     db.session.add(user)
     db.session.commit()
-    return render_template("login.html", success=True)
+    login_user(user, remember=True)
+    return redirect(url_prefix)
     
 @app.route("/login", methods=["POST"])
 def login():
@@ -108,6 +110,11 @@ def login():
             login_user(user, remember=True)
             return redirect(url_prefix)
     return render_template("unsuccessful-login.html")
+    
+@app.route("/tutorial")
+@login_required
+def tutorial():
+    return ""
 
 @app.route("/logout")
 def logout():
@@ -144,7 +151,7 @@ def level1CreateAccount():
     if int(current_user.level1_progress) == 0:
         current_user.level1_progress = 1
         db.session.commit()
-    return redirect(url_prefix + "level-1/index")
+    return redirect(url_prefix + "level-1/inbox?account=" + user.account)
 
 @app.route("/level-1/login", methods=["POST"])
 @login_required
