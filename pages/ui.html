@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="/static/vendor/mdb/css/mdb.css"/>
         <link rel="stylesheet" href="/static/vendor/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css"/>
         <link rel="icon" href="/static/favicon.ico"/>
+        <meta data-level="{{ level }}" />
     </head>
 
     <body>
@@ -30,7 +31,7 @@
             <a href="/" class="menu-link">menu</a>
         </div>
         <div class="ui ui-bottom">
-            <input class="flag-input" type="text" placeholder="flag"></input>
+            <input class="flag-input" type="text" name="flag" placeholder="flag"></input>
             <button class="flag-check" type="button">CHECK</i></button>
             <div id="hint-button" class="hint-button">?</div>
             <div id="hint" class="hint">This is an example of a hint</div>
