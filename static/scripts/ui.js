@@ -79,11 +79,17 @@ $(".flag-input").keypress(function(e) {
 });
 
 $("#hint-button").click(function() {
-   if (hintActive) {
+    if (hintActive) {
        $("#hint").hide();
        hintActive = false;
-   } else {
-       $("#hint").show();
-       hintActive = true;
-   }
+    } else {
+       $.post({
+    		url: "/get-hint/" + $("meta").attr("data-level"),
+    		success: function(result) {
+    		    $("#hint").text(result);
+    		    $("#hint").show();
+                hintActive = true;
+    		}
+        });
+    }
 });

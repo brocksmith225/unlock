@@ -149,6 +149,26 @@ def flagCheck(level):
         return "true"
     return "false"
     
+@app.route("/get-hint/<level>", methods=["POST"])
+def getHint(level):
+    conn = psycopg2.connect("dbname=unlock user=ubuntu")
+    cur = conn.cursor()
+    if int(level) == 1:
+        cur.execute("SELECT hint FROM unlock_hints WHERE level=1 AND progress=" + str(current_user.level1_progress) + " AND difficulty=" + str(current_user.difficulty) +";")
+        res = cur.fetchone()
+    elif int(level) == 2:
+        cur.execute("SELECT hint FROM unlock_hints WHERE level=2 AND progress=" + str(current_user.level2_progress) + " AND difficulty=" + str(current_user.difficulty) +";")
+        res = cur.fetchone()
+    elif int(level) == 3:
+        cur.execute("SELECT hint FROM unlock_hints WHERE level=3 AND progress=" + str(current_user.level3_progress) + " AND difficulty=" + str(current_user.difficulty) +";")
+        res = cur.fetchone()
+    elif int(level) == 4:
+        cur.execute("SELECT hint FROM unlock_hints WHERE level=4 AND progress=" + str(current_user.level4_progress) + " AND difficulty=" + str(current_user.difficulty) +";")
+        res = cur.fetchone()
+    cur.close()
+    conn.close()
+    return str(res[0])
+    
 @app.route("/level-1/index")
 @login_required
 def level1Index():
