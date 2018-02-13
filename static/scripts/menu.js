@@ -1,5 +1,4 @@
 $(function(){
-   $(".level-select-img").css("height", $(".level-select-img").width() / 2);
    var level1Progress = $("meta").attr("data-level1-progress");
    var level2Progress = $("meta").attr("data-level2-progress");
    var level3Progress = $("meta").attr("data-level3-progress");

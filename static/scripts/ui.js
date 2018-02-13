@@ -37,6 +37,7 @@ $(".flag-check").click(function() {
     		    $(".flag-check").html("CHECK");
                 if (result == "true") {
                     alert("Congrats!");
+                    window.location.replace("https://capstone-brocksmith225.c9.io/level-" + $("meta").attr("data-level") + "/info");
                 } else {
                     $(".flag-input").val("");
                     alert("Incorrect");
@@ -63,6 +64,7 @@ $(".flag-input").keypress(function(e) {
         		    $(".flag-check").html("CHECK");
                     if (result == "true") {
                         alert("Congrats!");
+                        window.location.replace("https://capstone-brocksmith225.c9users.io/level-" + $("meta").attr("data-level") + "/info");
                     } else {
                         $(".flag-input").val("");
                         alert("Incorrect");

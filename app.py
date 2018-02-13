@@ -70,9 +70,7 @@ db.session.commit()
 
 @login_manager.user_loader
 def load_user(user_id):
-    if User.query.get(user_id):
-        return User.query.get(user_id)
-    return BMailUser.query.get(user_id)
+    return User.query.get(user_id)
 
 @app.route("/")
 def opening():
@@ -168,12 +166,12 @@ def getHint(level):
     cur.close()
     conn.close()
     return str(res[0])
-    
+
 @app.route("/level-1/index")
 @login_required
 def level1Index():
     return render_template("level-1/index.html")
-    
+
 @app.route("/level-1/create-account", methods=["POST"])
 @login_required
 def level1CreateAccount():
@@ -212,7 +210,7 @@ def level1Inbox():
     cur.close()
     conn.close()
     emails = [dict() for x in range(len(res))]
-    account=request.args.get("account")
+    account = request.args.get("account")
     for i in range(0, len(res)):
         if res[i][4] == account:
             emails[i]["title"] = res[i][0]
