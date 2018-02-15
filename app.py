@@ -139,9 +139,9 @@ def flagCheck(level):
     cur.close()
     conn.close()
     if str(request.form["flag"]) == str(res[1]):
-        if int(current_user.level1_progress) == 2:
+        if int(current_user.level1_progress) <= 2:
             current_user.level1_progress = 3
-        if int(current_user.progress) == 1:
+        if int(current_user.progress) <= 1:
             current_user.progress = 2
         db.session.commit()
         return "true"
@@ -183,7 +183,7 @@ def level1CreateAccount():
         return redirect(url_prefix + "level-1/index")
     db.session.add(user)
     db.session.commit()
-    if int(current_user.level1_progress) == 0:
+    if int(current_user.level1_progress) <= 0:
         current_user.level1_progress = 1
         db.session.commit()
     return redirect(url_prefix + "level-1/inbox?account=" + user.account)
@@ -194,7 +194,7 @@ def level1Login():
     user = BMailUser.query.get(request.form["account"])
     if user:
         if request.form["password"] == user.pwd:
-            if int(current_user.level1_progress) == 1 and str(request.form["account"]) == "dev.team":
+            if int(current_user.level1_progress) <= 1 and str(request.form["account"]) == "dev.team":
                 current_user.level1_progress = 2
                 db.session.commit()
             return redirect(url_prefix + "level-1/inbox?account=" + user.account)

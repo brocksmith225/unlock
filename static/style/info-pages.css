@@ -38,12 +38,13 @@ h3 {
     width: 90vw;
     margin-left: 5vw;
     margin-right: 5vw;
+    margin-bottom: 40px;
     font-weight: normal;
     font-size: 2vw;
 }
 
 #continue {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     height: 100vh;
