@@ -230,6 +230,11 @@ def info():
     if int(current_user.progress) > 1:
         return render_template("info-pages/level-1.html")
     return redirect("/")
+    
+@app.route("/level-2/<page>")
+@login_required
+def level2Subpage(page):
+    return render_template("level-2/" + page + ".html")
 
 @app.route("/screenshot/<page>")
 @login_required
