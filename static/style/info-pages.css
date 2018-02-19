@@ -64,3 +64,20 @@ h3 {
     from    {opacity: 0.7;}
     to      {opacity: 0;}
 }
+
+.btn-outline-primary {
+    border-color: #0275d8 !important;
+    border-width: 2px;
+    color: #0275d8 !important;
+    text-transform: uppercase;
+}
+
+.btn-outline-primary:hover {
+    color: #fff !important;
+}
+
+.btn-lg {
+    margin-bottom: 50px;
+    font-size: 22pt;
+    padding: 12px 48px;
+}

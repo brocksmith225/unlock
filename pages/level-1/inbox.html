@@ -31,12 +31,12 @@
             </navbar>
             
             <div id="email-display" class="inbox">
-                {% for email in emails %}
-                    <div class="email {{ email['tags'] }}">
+                {% for i in range(count-1, -1, -1) %}
+                    <div class="email {{ emails[i]['tags'] }}">
                         <i class="fa star-toggle"></i>
-                        <h1>{{ email["title"] }}</h1>
-                        <h3>{% autoescape false %}{{ email["body"] }}{% endautoescape %}</h3>
-                        <h2>{{ email["sender"] }}</h2>
+                        <h1>{{ emails[i]["title"] }}</h1>
+                        <h3>{% autoescape false %}{{ emails[i]["body"] }}{% endautoescape %}</h3>
+                        <h2>{{ emails[i]["sender"] }}</h2>
                         <div class="exit-button">X</div>
                     </div>
                 {% endfor %}

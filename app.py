@@ -211,13 +211,13 @@ def level1Inbox():
     conn.close()
     emails = [dict() for x in range(len(res))]
     account = request.args.get("account")
-    for i in range(0, len(res)):
+    for i in range(len(res)-1, -1, -1):
         if res[i][4] == account:
             emails[i]["title"] = res[i][0]
             emails[i]["body"] = res[i][1]
             emails[i]["sender"] = res[i][2]
             emails[i]["tags"] = res[i][3]
-    return render_template("level-1/inbox.html", account=account, emails=emails)
+    return render_template("level-1/inbox.html", account=account, emails=emails, count=len(emails))
 
 @app.route("/level-1/<page>")
 @login_required
@@ -244,5 +244,5 @@ def screenshot2(folder, page):
     if current_user.email == "brocksmith225@gmail.com":
         return render_template(folder + "/" + page + ".html")
     return redirect(url_prefix)
-    
+
 app.run(host="0.0.0.0", port=8080, debug=True)
