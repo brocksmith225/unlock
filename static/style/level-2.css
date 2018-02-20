@@ -61,3 +61,22 @@ navbar .search:hover {
 navbar .search:before {
     margin-left: -3px;
 }
+
+.account-option {
+    float: right;
+    color: white !important;
+    height: 27px;
+    display: inline-block;
+    margin-top: 3px;
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+.account-option:hover {
+    text-decoration: underline !important;
+}
+
+#sign-in {
+    margin-top: 26px;
+    margin-right: -84px;
+}

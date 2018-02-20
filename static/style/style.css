@@ -64,7 +64,7 @@ input[type=submit] {
     animation: ui-lower 0.5s;
     height: 30px;
     bottom: 0;
-    box-shadow: 2px -4px 8px #777;
+    box-shadow: 2px -4px 8px black;
 }
 
 .ui-bottom *  {
@@ -503,7 +503,7 @@ input.flag-input:focus {
     width: 100vw;
     line-height: 40px;
     z-index: 100;
-    box-shadow: 2px 4px 8px #777;
+    box-shadow: 2px 4px 8px black;
 }
 
 .top-bar * {
