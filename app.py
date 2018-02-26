@@ -269,7 +269,25 @@ def level2Index():
         items[i]["name"] = res[i][0]
         items[i]["price"] = res[i][1]
         items[i]["image"] = res[i][2]
-    return render_template("level-2/index.html", items=items)
+    return render_template("level-2/index.html", items=items, count=len(items))
+
+@app.route("/level-2/search", methods=["POST"])
+@login_required
+def level2Search():
+    term = str(request.form["term"])
+    conn = psycopg2.connect("dbname=unlock user=ubuntu")
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM nile_items;")
+    res = cur.fetchall()
+    cur.close()
+    conn.close()
+    items = [dict() for x in range(len(res))]
+    for i in range(len(res)-1, -1, -1):
+        if term in res[i][0] or term in res[i][3]:
+            items[i]["name"] = res[i][0]
+            items[i]["price"] = res[i][1]
+            items[i]["image"] = res[i][2]
+    return str(items)
 
 @app.route("/level-2/<page>")
 @login_required
