@@ -67,7 +67,7 @@ input[type=submit] {
     box-shadow: 2px -4px 8px black;
 }
 
-.ui-bottom *  {
+.ui-bottom * {
     display: none;
 }
 
@@ -161,7 +161,6 @@ input.flag-input:hover {
     background: #a3a3a3;
     animation: none;
     color: #292b2c;
-    margin-top: 10px;
     margin-bottom: 10px;
     transform: translateY(-1px);
     border-radius: 3px;
@@ -648,5 +647,42 @@ input.flag-input:focus {
 }
 
 .progress-graph .progress-bar.active {
+    background-color: #07b713;
+}
+
+.progress-graph-small {
+    display: block;
+    position: absolute;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 40px;
+    width: 20vw;
+}
+
+.progress-graph-small .progress-bar {
+    background-color: #999;
+    height: 7px;
+    margin-bottom: 10px;
+}
+
+.progress-graph-small .fa {
+    text-align: center;
+    font-size: 40px;
+    color: #999;
+}
+
+.progress-graph-small .progress-3 {
+    width: 20%;
+}
+
+.progress-graph-small .progress-4 {
+    width: 10%;
+}
+
+.progress-graph-small .fa.active {
+    color: #07b713; /*Green: 07b713, Blue: 0275d8*/
+}
+
+.progress-graph-small .progress-bar.active {
     background-color: #07b713;
 }

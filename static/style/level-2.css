@@ -4,6 +4,7 @@ navbar {
     position: absolute;
     top: 0;
     width: 100vw;
+    z-index: 100;
 }
 
 navbar h1 {
@@ -76,7 +77,94 @@ navbar .search:before {
     text-decoration: underline !important;
 }
 
+navbar .fa-shopping-cart {
+    font-size: 40px;
+    color: white;
+    float: right;
+    margin-top: 9px;
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+navbar .fa-circle {
+    color: red;
+    font-size: 25px;
+    float: right;
+    margin-right: -80px;
+}
+
+navbar h2 {
+    display: inline-block;
+    width: 21px;
+    height: 21px;
+    color: white;
+    float: right;
+    margin-right: -80px;
+    font-size: 15px;
+    text-align: center;
+    line-height: 21px;
+}
+
 #sign-in {
     margin-top: 26px;
     margin-right: -84px;
+}
+
+#items {
+    min-height: calc(100vh - 77px);
+    width: 100vw;
+    position: absolute;
+    top: 77px;
+    overflow-y: auto;
+}
+
+.item {
+    border-bottom: 1px solid #333;
+    height: 150px;
+    width: 100vw;
+    padding: 15px 30px;
+    line-height: 120px;
+    cursor: pointer;
+}
+
+.item:hover {
+    background-color: #f5f5f5;
+}
+
+.item * {
+    display: inline;
+}
+
+.item .preview-img {
+    height: 120px;
+    width: 120px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin-right: 20px;
+    display: inline-block;
+}
+
+.item h1 {
+    line-height: 120px;
+    margin: 0;
+    vertical-align: top;
+}
+
+.item h2 {
+    line-height: 120px;
+    margin: 0;
+    vertical-align: text-bottom;
+    color: #777;
+    font-size: 24px;
+    float: right;
+}
+
+.item i {
+    float: right;
+    display: inline;
+    vertical-align: middle;
+    font-size: 30px;
+    margin-left: 20px;
+    margin-top: 45px;
 }

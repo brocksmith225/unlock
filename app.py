@@ -2,6 +2,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 from flask_sqlalchemy import SQLAlchemy, sqlalchemy
+from flask.ext.socketio import emit, SocketIO
 import os, uuid, psycopg2
 
 app = Flask(__name__, template_folder='pages')
@@ -10,6 +11,7 @@ login_manager.init_app(app);
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://ubuntu:Unl0ck@localhost/unlock"
 app.config["SECRET_KEY"] = "something unique and secret"
 db = SQLAlchemy(app)
+socketIO = SocketIO(app)
 url_prefix = "https://capstone-brocksmith225.c9users.io/"
 
 class User(db.Model):
@@ -123,13 +125,34 @@ def logout():
     logout_user()
     return "logged out"
     
-@app.route("/level-<level>")
+@app.route("/level-1")
 @login_required
-def level1(level):
-    if int(current_user.progress) >= int(level):
-        return render_template("ui.html", level=level, page="index")
+def level1():
+    if int(current_user.progress) >= 1:
+        return render_template("ui.html", level="1", page="index", level_progress=current_user.level1_progress, max_level_progress=3)
     return redirect(url_prefix)
     
+@app.route("/level-2")
+@login_required
+def level2():
+    if int(current_user.progress) >= 2:
+        return render_template("ui.html", level="2", page="index", level_progress=current_user.level2_progress, max_level_progress=4)
+    return redirect(url_prefix)
+    
+@app.route("/level-3")
+@login_required
+def level3():
+    if int(current_user.progress) >= 3:
+        return render_template("ui.html", level="3", page="index", level_progress=current_user.level3_progress, max_level_progress=3)
+    return redirect(url_prefix)
+    
+@app.route("/level-4")
+@login_required
+def level4():
+    if int(current_user.progress) >= 4:
+        return render_template("ui.html", level="4", page="index", level_progress=current_user.level4_progress, max_level_progress=3)
+    return redirect(url_prefix)
+
 @app.route("/flag-check/<level>", methods=["POST"])
 def flagCheck(level):
     conn = psycopg2.connect("dbname=unlock user=ubuntu")
@@ -170,6 +193,7 @@ def getHint(level):
 @app.route("/level-1/index")
 @login_required
 def level1Index():
+    socketIO.emit("level-progress-update", {"level_progress" : "test"})
     return render_template("level-1/index.html")
 
 @app.route("/level-1/create-account", methods=["POST"])
@@ -231,6 +255,22 @@ def info():
         return render_template("info-pages/level-1.html")
     return redirect("/")
     
+@app.route("/level-2/index")
+@login_required
+def level2Index():
+    conn = psycopg2.connect("dbname=unlock user=ubuntu")
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM nile_items;")
+    res = cur.fetchall()
+    cur.close()
+    conn.close()
+    items = [dict() for x in range(len(res))]
+    for i in range(len(res)-1, -1, -1):
+        items[i]["name"] = res[i][0]
+        items[i]["price"] = res[i][1]
+        items[i]["image"] = res[i][2]
+    return render_template("level-2/index.html", items=items)
+
 @app.route("/level-2/<page>")
 @login_required
 def level2Subpage(page):
@@ -251,3 +291,4 @@ def screenshot2(folder, page):
     return redirect(url_prefix)
 
 app.run(host="0.0.0.0", port=8080, debug=True)
+socketIO.run(app)

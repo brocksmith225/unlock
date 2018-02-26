@@ -4,15 +4,15 @@
     <head>
         <title>Unlock</title>
         <link href="https://fonts.googleapis.com/css?family=Roboto:700" rel="stylesheet">
-        <link rel="stylesheet" href="/static/style/style.css"/>
         <link rel="stylesheet" href="/static/vendor/bootstrap/css/bootstrap-grid.min.css"/>
         <link rel="stylesheet" href="/static/vendor/bootstrap/css/bootstrap-reboot.min.css"/>
         <link rel="stylesheet" href="/static/vendor/bootstrap/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="/static/vendor/hover/css/hover.min.css"/>
         <link rel="stylesheet" href="/static/vendor/mdb/css/mdb.css"/>
         <link rel="stylesheet" href="/static/vendor/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css"/>
+        <link rel="stylesheet" href="/static/style/style.css"/>
         <link rel="icon" href="/static/favicon.ico"/>
-        <meta data-level="{{ level }}" />
+        <meta data-level="{{ level }}" data-level-progress="{{ level_progress }}" data-max-level-progress="{{ max_level_progress }}" />
     </head>
 
     <body>
@@ -31,6 +31,25 @@
             <a href="/" class="menu-link">menu</a>
         </div>
         <div class="ui ui-bottom">
+            {% if max_level_progress == 3 %}
+            <div id="level-progress" class="progress-graph-small">
+                <i id="level-1" class="fa fa-check-circle level-1">
+                </i><div class="progress-bar progress-3 level-2">
+                </div><i id="level-2" class="fa fa-check-circle level-2">
+                </i><div class="progress-bar progress-3 level-3">
+                </div><i id="level-3" class="fa fa-check-circle level-3"></i>
+            </div>
+            {% elif max_level_progress == 4 %}
+            <div id="level-progress" class="progress-graph-small">
+                <i id="level-1" class="fa fa-check-circle level-1">
+                </i><div class="progress-bar progress-4 level-2">
+                </div><i id="level-2" class="fa fa-check-circle level-2">
+                </i><div class="progress-bar progress-4 level-3">
+                </div><i id="level-3" class="fa fa-check-circle level-3">
+                </i><div class="progress-bar progress-4 level-3">
+                </div><i id="level-3" class="fa fa-check-circle level-3"></i>
+            </div>
+            {% endif %}
             <input class="flag-input" type="text" name="flag" placeholder="flag"></input>
             <button class="flag-check" type="button">CHECK</i></button>
             <div id="hint-button" class="hint-button">?</div>
@@ -46,6 +65,7 @@
         <script src="/static/vendor/node_modules/convert-string/convert-string.js"></script>
         <script src="/static/vendor/node_modules/sha256/lib/sha256.js"></script>
         <script src="/static/vendor/mdb/js/mdb.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
         <script src="/static/scripts/ui.js"></script>
     </body>
     

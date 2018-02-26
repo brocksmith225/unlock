@@ -60,6 +60,7 @@ $("#create-account-form").submit(function() {
     if (pwd === confPwd) {
         $("#create-account-submit input[name='account']").val(account);
         $("#create-account-submit input[name='password']").val(pwd);
+        parent.updateLevelProgress(1);
         $("#create-account-submit").submit();
     } else {
         $("#create-account-form input[name='password']").val("");
