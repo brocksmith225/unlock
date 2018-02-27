@@ -23,6 +23,10 @@ navbar .fa-long-arrow-right {
     color: #f08804;
 }
 
+navbar .top-logo {
+    cursor: pointer;
+}
+
 navbar .search-bar {
     display: inline-block;
     float: right;

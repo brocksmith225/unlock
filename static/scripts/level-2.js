@@ -1,5 +1,58 @@
+var cartItems = [];
+var items = [];
+var inCart = false;
+
+$(function() {
+    $("#items").children().each(function() {
+        items.push(this);
+    });
+});
+
+$("navbar i.fa-shopping-cart").click(function() {
+    inCart = true;
+    $("#items").html("");
+    for (var i = 0; i < cartItems.length; i++) {
+        $("#items").append(cartItems[i]);
+    }
+    $(".add-to-cart").click(function() {
+        if (inCart) {
+            $("#cart-counter").text(parseInt($("#cart-counter").text()) - 1);
+            cartItems.splice($.inArray($(this).parent(), cartItems), 1);
+            $(this).parent().remove();
+        } else {
+            $("#cart-counter").text(parseInt($("#cart-counter").text()) + 1);
+            cartItems.push($(this).parent());
+        }
+    });
+});
+
+$(".top-logo").click(function() {
+    inCart = false;
+    $("#items").html("");
+    for (var i = 0; i < items.length; i++) {
+        $("#items").append(items[i]);
+    }
+    $(".add-to-cart").click(function() {
+        if (inCart) {
+            $("#cart-counter").text(parseInt($("#cart-counter").text()) - 1);
+            cartItems.splice($.inArray($(this).parent(), cartItems), 1);
+            $(this).parent().remove();
+        } else {
+            $("#cart-counter").text(parseInt($("#cart-counter").text()) + 1);
+            cartItems.push($(this).parent());
+        }
+    });
+});
+
 $(".add-to-cart").click(function() {
-    $("#cart-counter").text(parseInt($("#cart-counter").text()) + 1);
+    if (inCart) {
+        $("#cart-counter").text(parseInt($("#cart-counter").text()) - 1);
+        cartItems.splice($.inArray($(this).parent(), cartItems), 1);
+        $(this).parent().remove();
+    } else {
+        $("#cart-counter").text(parseInt($("#cart-counter").text()) + 1);
+        cartItems.push($(this).parent());
+    }
 });
 
 $("#search-button").click(function() {

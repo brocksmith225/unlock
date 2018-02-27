@@ -14,6 +14,12 @@ db = SQLAlchemy(app)
 socketIO = SocketIO(app)
 url_prefix = "https://capstone-brocksmith225.c9users.io/"
 
+
+
+
+
+
+#-----USER ACCOUNT SET-UP-----#
 class User(db.Model):
     
     __tablename__ = "unlock_users"
@@ -73,7 +79,13 @@ db.session.commit()
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
+#-----END USER ACCOUNT FUNCTIONALITY-----#
+    
+    
+    
 
+
+#-----BASE WEBSITE FUNCTIONALITY-----#
 @app.route("/")
 def opening():
     try:
@@ -124,7 +136,13 @@ def logout():
     db.session.commit()
     logout_user()
     return "logged out"
-    
+#-----END BASE WEBSITE FUNCTIONALITY-----#
+
+   
+
+
+
+#-----UI FUNCTIONALITY-----#
 @app.route("/level-1")
 @login_required
 def level1():
@@ -189,7 +207,13 @@ def getHint(level):
     cur.close()
     conn.close()
     return str(res[0])
+#-----END UI FUNCTIONALITY-----#
 
+    
+    
+    
+    
+#-----FIRST LEVEL FUNCTIONALITY-----#
 @app.route("/level-1/index")
 @login_required
 def level1Index():
@@ -254,7 +278,13 @@ def info():
     if int(current_user.progress) > 1:
         return render_template("info-pages/level-1.html")
     return redirect("/")
+#-----END FIRST LEVEL FUNCTIONALITY-----#
+
     
+    
+    
+    
+#-----SECOND LEVEL FUNCTIONALITY-----#
 @app.route("/level-2/index")
 @login_required
 def level2Index():
@@ -293,7 +323,13 @@ def level2Search():
 @login_required
 def level2Subpage(page):
     return render_template("level-2/" + page + ".html")
+#-----END SECOND LEVEL FUNCTIONALITY-----#
 
+
+
+
+
+#-----SCREENSHOT FUNCTIONALITY-----#
 @app.route("/screenshot/<page>")
 @login_required
 def screenshot(page):
@@ -307,6 +343,11 @@ def screenshot2(folder, page):
     if current_user.email == "brocksmith225@gmail.com":
         return render_template(folder + "/" + page + ".html")
     return redirect(url_prefix)
+#-----END SCREENSHOT FUNCTIONALITY-----#
+
+
+
+
 
 app.run(host="0.0.0.0", port=8080, debug=True)
 socketIO.run(app)
