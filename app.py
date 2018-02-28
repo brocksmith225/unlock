@@ -283,7 +283,7 @@ def info():
     
     
     
-    
+
 #-----SECOND LEVEL FUNCTIONALITY-----#
 @app.route("/level-2/index")
 @login_required

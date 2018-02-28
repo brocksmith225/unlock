@@ -18,7 +18,20 @@ $("navbar i.fa-shopping-cart").click(function() {
         if (inCart) {
             $("#cart-counter").text(parseInt($("#cart-counter").text()) - 1);
             cartItems.splice($.inArray($(this).parent(), cartItems), 1);
-            $(this).parent().remove();
+            found = false;
+            for (var i = 0; i < cartItems.length; i++) {
+                console.log($(this).parent());
+                console.log(cartItems[i]);
+                console.log(cartItems[i].equals($(this).parent()));
+                console.log(cartItems[i] == $(this).parent());
+                if (cartItems[i].equals($(this).parent())) {
+                    found = true;
+                    i = cartItems.length;
+                }
+            }
+            if (!found) {
+                $(this).parent().remove();
+            }
         } else {
             $("#cart-counter").text(parseInt($("#cart-counter").text()) + 1);
             cartItems.push($(this).parent());
@@ -36,7 +49,16 @@ $(".top-logo").click(function() {
         if (inCart) {
             $("#cart-counter").text(parseInt($("#cart-counter").text()) - 1);
             cartItems.splice($.inArray($(this).parent(), cartItems), 1);
-            $(this).parent().remove();
+            found = false;
+            for (var i = 0; i < cartItems.length; i++) {
+                if (cartItems[i] == $(this).parent()) {
+                    found = true;
+                    i = cartItems.length;
+                }
+            }
+            if (!found) {
+                $(this).parent().remove();
+            }
         } else {
             $("#cart-counter").text(parseInt($("#cart-counter").text()) + 1);
             cartItems.push($(this).parent());
@@ -48,7 +70,16 @@ $(".add-to-cart").click(function() {
     if (inCart) {
         $("#cart-counter").text(parseInt($("#cart-counter").text()) - 1);
         cartItems.splice($.inArray($(this).parent(), cartItems), 1);
-        $(this).parent().remove();
+        found = false;
+        for (var i = 0; i < cartItems.length; i++) {
+            if (cartItems[i] == $(this).parent()) {
+                found = true;
+                i = cartItems.length;
+            }
+        }
+        if (!found) {
+            $(this).parent().remove();
+        }
     } else {
         $("#cart-counter").text(parseInt($("#cart-counter").text()) + 1);
         cartItems.push($(this).parent());
