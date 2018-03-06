@@ -41,6 +41,12 @@ navbar input[type="text"] {
     width: calc(50vw - 66px);
     box-shadow: none !important;
     outline: none !important;
+    color: #666;
+}
+
+navbar input[type="text"]:active,
+navbar input[type="text"]:focus {
+    color: #292b2c;
 }
 
 navbar .search {
