@@ -274,10 +274,10 @@ def level1Subpage(page):
     
 @app.route("/level-1/info")
 @login_required
-def info():
+def info1():
     if int(current_user.progress) > 1:
         return render_template("info-pages/level-1.html")
-    return redirect("/")
+    return redirect(url_prefix)
 #-----END FIRST LEVEL FUNCTIONALITY-----#
 
     
@@ -304,7 +304,14 @@ def level2Index():
 @app.route("/level-2/search", methods=["POST"])
 @login_required
 def level2Search():
+    if int(current_user.level2_progress) <= 0:
+        current_user.level2_progress = 1
+        db.session.commit()
     term = str(request.form["term"])
+    if "'" in term or ";" in term or "--" in term:
+        if int(current_user.level2_progress) <= 1:
+            current_user.level2_progress = 2
+            db.session.commit()
     conn = psycopg2.connect("dbname=nile user=ubuntu")
     cur = conn.cursor()
     cur.execute("SELECT * FROM items WHERE tags LIKE '%" + term + "%';")
@@ -313,15 +320,37 @@ def level2Search():
     conn.close()
     items = [dict() for x in range(len(res))]
     for i in range(len(res)-1, -1, -1):
+        for j in range(0, len(res)):
+            if str(res[i][j]) == "letmein":
+                if int(current_user.level2_progress) <= 2:
+                    current_user.level2_progress = 3
+                    db.session.commit()
         items[i]["name"] = res[i][0]
         items[i]["price"] = res[i][1]
         items[i]["image"] = res[i][2]
     return str(items)
 
+@app.route("/level-2/signin")
+@login_required
+def level2SignIn():
+    return redirect(url_prefix + "level-2/index")
+
+@app.route("/level-2/signup")
+@login_required
+def level2SignUp():
+    return redirect(url_prefix + "level-2/index")
+
 @app.route("/level-2/<page>")
 @login_required
 def level2Subpage(page):
     return render_template("level-2/" + page + ".html")
+    
+@app.route("/level-2/info")
+@login_required
+def info2():
+    if int(current_user.progress) > 2:
+        return render_template("info-pages/level-2.html")
+    return redirect(url_prefix)
 #-----END SECOND LEVEL FUNCTIONALITY-----#
 
 

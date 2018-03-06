@@ -87,6 +87,11 @@ $(".add-to-cart").click(function() {
 });
 
 $("#search-button").click(function() {
+    parent.updateLevelProgress(1);
+    term = $("#search-input").val();
+    if (term.indexOf("'") > -1 || term.indexOf(";") > -1 || term.indexOf("--")) {
+        parent.updateLevelProgress(2);
+    }
     $.post({
         url: "/level-2/search",
         dataType: "text",
@@ -106,6 +111,10 @@ $("#search-button").click(function() {
 
 $("#search-input").keypress(function(e) {
     if (e.which == 13) {
+        parent.updateLevelProgress(1);
+        if (term.indexOf("'") > -1 || term.indexOf(";") > -1 || term.indexOf("--")) {
+            parent.updateLevelProgress(2);
+        }
         $.post({
             url: "/level-2/search",
             dataType: "text",
