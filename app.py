@@ -73,6 +73,29 @@ class BMailUser(db.Model):
     def get(user_id):
         return 1
         
+class NileUser(db.Model):
+    
+    __tablename__ = "nile_users"
+    
+    account = db.Column(db.String(40), unique=True, primary_key=True)
+    pwd = db.Column(db.String(64))
+
+    def is_active(self):
+        return True
+    
+    def is_authenticated(self):
+        return self.authenticated
+        
+    def is_anonymous(self):
+        return False
+    
+    def get_id(self):
+        return self.account
+        
+    @staticmethod
+    def get(user_id):
+        return 1
+        
 db.create_all()
 db.session.commit()
 
@@ -333,12 +356,30 @@ def level2Search():
 @app.route("/level-2/signin")
 @login_required
 def level2SignIn():
+    user = Nile.query.get(request.form["account"])
+    if user:
+        if request.form["password"] == user.pwd:
+            if str(request.form["account"]) == "realDonaldTrump":
+                if int(current_user.level1_progress) <= 3:
+                    current_user.level1_progress = 4
+                if int(current_user.progress) <= 2:
+                    current_user.progress = 3
+                db.session.commit()
+            return redirect(url_prefix + "level-2/index?account=" + user.account)
     return redirect(url_prefix + "level-2/index")
 
 @app.route("/level-2/signup")
 @login_required
 def level2SignUp():
-    return redirect(url_prefix + "level-2/index")
+    pwd = request.form["password"]
+    account = request.form["account"]
+    user = Nile(account=account, pwd=pwd)
+    db_user = Nile.query.get(account)
+    if db_user:
+        return redirect(url_prefix + "level-2/index")
+    db.session.add(user)
+    db.session.commit()
+    return redirect(url_prefix + "level-2/index?account=" + user.account)
 
 @app.route("/level-2/<page>")
 @login_required
