@@ -170,14 +170,14 @@ def logout():
 @login_required
 def level1():
     if int(current_user.progress) >= 1:
-        return render_template("ui.html", level="1", page="index", level_progress=current_user.level1_progress, max_level_progress=3)
+        return render_template("ui.html", level="1", page="index", level_progress=current_user.level1_progress, max_level_progress=3, flag=True)
     return redirect(url_prefix)
     
 @app.route("/level-2")
 @login_required
 def level2():
     if int(current_user.progress) >= 2:
-        return render_template("ui.html", level="2", page="index", level_progress=current_user.level2_progress, max_level_progress=4)
+        return render_template("ui.html", level="2", page="index", level_progress=current_user.level2_progress, max_level_progress=4, flag=False)
     return redirect(url_prefix)
     
 @app.route("/level-3")

@@ -216,6 +216,16 @@ input.flag-input:focus {
     background-color: #025aa5;
 }
 
+.ui h6 {
+    color: #444;
+    width: 391px;
+    height: 40px;
+    margin-left: calc(50vw - 240px);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
 #page-loader {
     position: absolute;
     overflow: auto;
