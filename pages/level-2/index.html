@@ -13,14 +13,19 @@
         <link rel="stylesheet" href="/static/style/style.css"/>
         <link rel="stylesheet" href="/static/style/level-2.css"/>
         <link rel="icon" href="/static/favicon.ico"/>
+        <meta data-username="{{ username }}" />
     </head>
     
     <body class="scrollable">
         <navbar>
             <h1 class="top-logo">nile</h1>
             <i class="fa fa-long-arrow-right top-logo"></i>
-            <a id="sign-up" class="account-option">Sign-Up</a>
-            <a id="sign-in" class="account-option">Sign-In</a>
+            {% if username == "anonymous" %}
+                <a id="sign-up" class="account-option">Sign-Up</a>
+                <a id="sign-in" class="account-option">Sign-In</a>
+            {% else %}
+                <i class="fa fa-user account-option"></i>
+            {% endif %}
             <i class="fa fa-shopping-cart"></i>
             <i class="fa fa-circle"></i>
             <h2 id="cart-counter">0</h2>
@@ -28,6 +33,21 @@
                 <input id="search-input" type="text" name="term" placeholder="" /><div id="search-button" class="search fa fa-search"></div>
             </div>
         </navbar>
+        
+        <form id="nile-sign-up" class="nile-account-form" method="POST" action="https://capstone-brocksmith225.c9users.io/level-2/signup">
+            <label>Username</label>
+            <input class="nile-account-form-input" name="username" type="text" placeholder="username" />
+            <label>Password</label>
+            <input class="nile-account-form-input" name="password" type="password" placeholder="password" />
+            <input class="btn btn-block nile-account-form-submit" type="submit">
+        </form>
+        <form id="nile-sign-in" class="nile-account-form" method="POST" action="https://capstone-brocksmith225.c9users.io/level-2/signin">
+            <label>Username</label>
+            <input class="nile-account-form-input" name="username" type="text" placeholder="username" />
+            <label>Password</label>
+            <input class="nile-account-form-input" name="password" type="password" placeholder="password" />
+            <input class="btn btn-block nile-account-form-submit" type="submit">
+        </form>
         
         <div id="items">
             <div class="item"><div class="preview-img" style="background-image: url('/static/img/level-1.png');"></div><h1>This Is One Item For Sale</h1><i class="fa fa-shopping-cart add-to-cart"></i><h2>$17.99</h2></div>

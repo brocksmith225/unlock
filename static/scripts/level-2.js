@@ -136,3 +136,33 @@ $("#search-input").keypress(function(e) {
 $("#search-input").click(function() {
     $(this).select();
 });
+
+$(function() {
+    $(".nile-account-form").hide();
+});
+
+$("#sign-up").click(function() {
+    $("#nile-sign-up").show();
+    $("#nile-sign-in").hide();
+    event.stopPropagation();
+});
+
+$("#sign-in").click(function() {
+    $("#nile-sign-in").show();
+    $("#nile-sign-up").hide();
+    event.stopPropagation();
+});
+
+$(".nile-account-form").click(function() {
+    event.stopPropagation();
+});
+
+$("body").click(function() {
+    $(".nile-account-form").hide();
+});
+
+$(function() {
+    if ($("meta").attr("data-username") == "realDonaldTrump") {
+        parent.updateLevelProgress(4);
+    }
+})

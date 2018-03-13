@@ -87,6 +87,14 @@ navbar .search:before {
     text-decoration: underline !important;
 }
 
+.fa.account-option {
+    font-size: 35pt;
+}
+
+.fa.account-option:hover {
+    text-decoration: none !important;
+}
+
 navbar .fa-shopping-cart {
     font-size: 40px;
     color: white;
@@ -178,4 +186,48 @@ navbar h2 {
     font-size: 30px;
     margin-left: 20px;
     margin-top: 45px;
+}
+
+.nile-account-form {
+    position: fixed;
+    display: block;
+    width: 250px;
+    padding: 20px;
+    right: 5px;
+    top: 82px;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    z-index: 2000;
+    box-shadow: 4px 4px 10px #777;
+}
+
+.nile-account-form label {
+    font-size: 15pt;
+}
+
+.nile-account-form-input {
+    padding: 5px;
+    display: block;
+    border-radius: 3px;
+}
+
+.nile-account-form-input:hover {
+    background-color: #bbb;
+}
+
+.nile-account-form-input:focus,
+.nile-account-form-input:active {
+    background-color: white;
+    outline: none;
+    box-shadow: -2px 0 #f08804 !important;
+}
+
+.nile-account-form-submit {
+    background-color: #f79922;
+}
+
+.nile-account-form-submit:hover,
+.nile-account-form-submit:focus,
+.nile-account-form-submit:active {
+    background-color: #f08804;
 }
