@@ -10,7 +10,7 @@ $(".ui-bottom").mouseover(function() {
 
 $(".ui-bottom").mouseout(function() {
     mouseOver = false;
-    if (!$(".flag-input").is(":focus") && $(".flag-check").html() == "CHECK" && !hintActive) {
+    if (!$(".flag-input").is(":focus") && !hintActive) {
         $(".ui-bottom").removeClass("active");
     }
 });
