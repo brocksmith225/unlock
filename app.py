@@ -345,7 +345,7 @@ def level2Search():
     conn.close()
     items = [dict() for x in range(len(res))]
     for i in range(len(res)-1, -1, -1):
-        for j in range(0, len(res)):
+        for j in range(0, len(res[i])):
             if str(res[i][j]) == "letmein":
                 if int(current_user.level2_progress) <= 2:
                     current_user.level2_progress = 3
