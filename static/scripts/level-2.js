@@ -103,6 +103,9 @@ $("#search-button").click(function() {
             console.log(searchItems);
             $("#items").html("");
             for (i = 0; i < searchItems.length; i++) {
+                if (searchItems[i]["image"] s== "letmein" || searchItems[i]["name"] || searchItems[i]["price"] ) {
+                    parent.updateLevelProgress(3);
+                }
                 $("#items").append('<div class="item"><div class="preview-img" style="background-image: url(&quot;/static/img/nile/items/' + searchItems[i]["image"] + '&quot;);"></div><h1>' + searchItems[i]["name"] + '</h1><i class="fa fa-shopping-cart add-to-cart"></i><h2>' + searchItems[i]["price"] + '</h2></div>');
             }
         }
@@ -126,6 +129,9 @@ $("#search-input").keypress(function(e) {
                 console.log(searchItems);
                 $("#items").html("");
                 for (i = 0; i < searchItems.length; i++) {
+                    if (searchItems[i]["image"] s== "letmein" || searchItems[i]["name"] || searchItems[i]["price"] ) {
+                        parent.updateLevelProgress(3);
+                    }
                     $("#items").append('<div class="item"><div class="preview-img" style="background-image: url(&quot;/static/img/nile/items/' + searchItems[i]["image"] + '&quot;);"></div><h1>' + searchItems[i]["name"] + '</h1><i class="fa fa-shopping-cart add-to-cart"></i><h2>' + searchItems[i]["price"] + '</h2></div>');
                 }
             }
