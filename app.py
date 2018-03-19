@@ -399,6 +399,15 @@ def info2():
 
 
 
+#-----THIRD LEVEL FUNCTIONALITY-----#
+@app.route("/level-3/index")
+@login_required
+def level3Index():
+    return render_template("level-3/index.html")
+#-----END THIRD LEVEL FUNCTIONALITY-----#
+
+
+
 
 #-----SCREENSHOT FUNCTIONALITY-----#
 @app.route("/screenshot/<page>")
