@@ -113,26 +113,63 @@ function updateLevelProgress(progress) {
     }
 }
 
+var myHistory;
+
 $(function() {
     $("input[name='url']").val("https://capstone-brocksmith225.c9users.io/" + $("#page-loader").attr("src"));
+    myHistory = new LinkedList("https://capstone-brocksmith225.c9users.io/" + $("#page-loader").attr("src"));
 });
 
 function updateURL(url) {
+    myHistory.goTo(url);
     $("input[name='url']").val(url);
 }
 
 $("#page-loader").on("load", function() {
     $("#back").click(function() {
-        $("#page-loader").get(0).contentWindow.history.back();
+        $("#page-loader").get(0).contentWindow.location.replace(myHistory.back());
     });
     $("#forward").click(function() {
-        $("#page-loader").get(0).contentWindow.history.forward();
+        $("#page-loader").get(0).contentWindow.location.replace(myHistory.forward());
     });
 });
 
 $("input[name='url']").keypress(function(e) {
-    console.log(e.which);
     if (e.which == 13) {
+        myHistory.goTo($("input[name='url']").val());
         $("#page-loader").get(0).contentWindow.location.replace($("input[name='url']").val());
     }
 });
+
+function LinkedList(url) {
+    this.current = new Node(url);
+    this.back = function() {
+        if (this.current.hasBack()) {
+            this.current = this.current.back;
+        }
+        return this.current.value;
+    };
+    this.forward = function() {
+        if (this.current.hasForward()) {
+            this.current = this.current.forward;
+        }
+        return this.current.value;
+    };
+    this.goTo = function(url) {
+        this.current.forward = new Node(url);
+        this.current.forward.back = this.current;
+        this.current = this.current.forward;
+    };
+}
+
+function Node(url) {
+    this.value = url;
+    this.back = null;
+    this.forward = null;
+    this.hasBack = function() {
+        return this.back != null;
+    };
+    this.hasForward = function() {
+        return this.forward != null;
+    };
+}
