@@ -1,8 +1,9 @@
 #!/usr/bin/env python
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
 from flask_sqlalchemy import SQLAlchemy, sqlalchemy
 from flask.ext.socketio import emit, SocketIO
+from flask.ext.session import Session
 import os, uuid, psycopg2
 
 app = Flask(__name__, template_folder='pages')
@@ -10,9 +11,11 @@ login_manager = LoginManager()
 login_manager.init_app(app);
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://ubuntu:Unl0ck@localhost/unlock"
 app.config["SECRET_KEY"] = "something unique and secret"
+app.config['SESSION_TYPE'] = 'filesystem'
 db = SQLAlchemy(app)
 socketIO = SocketIO(app)
 url_prefix = "https://capstone-brocksmith225.c9users.io/"
+Session(app)
 
 
 
@@ -184,14 +187,14 @@ def level2():
 @login_required
 def level3():
     if int(current_user.progress) >= 3:
-        return render_template("ui.html", level="3", page="index", level_progress=current_user.level3_progress, max_level_progress=3)
+        return render_template("ui.html", level="3", page="index", level_progress=current_user.level3_progress, max_level_progress=3, flag=False)
     return redirect(url_prefix)
     
 @app.route("/level-4")
 @login_required
 def level4():
     if int(current_user.progress) >= 4:
-        return render_template("ui.html", level="4", page="index", level_progress=current_user.level4_progress, max_level_progress=3)
+        return render_template("ui.html", level="4", page="index", level_progress=current_user.level4_progress, max_level_progress=3, flag=True)
     return redirect(url_prefix)
 
 @app.route("/flag-check/<level>", methods=["POST"])
@@ -268,10 +271,11 @@ def level1Login():
             if int(current_user.level1_progress) <= 1 and str(request.form["account"]) == "dev.team":
                 current_user.level1_progress = 2
                 db.session.commit()
-            return redirect(url_prefix + "level-1/inbox?account=" + user.account)
+            session["account"] = user.account
+            return redirect(url_prefix + "level-1/inbox", code=307)
     return redirect(url_prefix + "level-1/index")
 
-@app.route("/level-1/inbox")
+@app.route("/level-1/inbox", methods=["POST"])
 @login_required
 def level1Inbox():
     conn = psycopg2.connect("dbname=unlock user=ubuntu")
@@ -281,7 +285,7 @@ def level1Inbox():
     cur.close()
     conn.close()
     emails = [dict() for x in range(len(res))]
-    account = request.args.get("account")
+    account = session["account"]
     for i in range(len(res)-1, -1, -1):
         if res[i][4] == account:
             emails[i]["title"] = res[i][0]

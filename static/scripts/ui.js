@@ -112,3 +112,27 @@ function updateLevelProgress(progress) {
         updateLevelProgressDisplay();
     }
 }
+
+$(function() {
+    $("input[name='url']").val("https://capstone-brocksmith225.c9users.io/" + $("#page-loader").attr("src"));
+});
+
+function updateURL(url) {
+    $("input[name='url']").val(url);
+}
+
+$("#page-loader").on("load", function() {
+    $("#back").click(function() {
+        $("#page-loader").get(0).contentWindow.history.back();
+    });
+    $("#forward").click(function() {
+        $("#page-loader").get(0).contentWindow.history.forward();
+    });
+});
+
+$("input[name='url']").keypress(function(e) {
+    console.log(e.which);
+    if (e.which == 13) {
+        $("#page-loader").get(0).contentWindow.location.replace($("input[name='url']").val());
+    }
+});

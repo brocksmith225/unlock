@@ -16,7 +16,7 @@
     </head>
 
     <body>
-        <div class="ui top-bar">
+        <div class="ui ui-top top-bar">
             <svg id="main-logo" class="small-logo" width="100" height="129" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 129" preserveAspectRation="xMidYMid meet">
                 <rect x="20px" y="33px" width="12px" height="16" stroke-width="0px" fill="#454747" />
                 <rect class="unlock" x="68px" y="33px" width="12px" height="16" stroke-width="0px" fill="#454747" />
@@ -29,6 +29,10 @@
             <h1 class="small-title">Unlock</h1>
             <h1 class="color-red level-label">Level {{ level }}</h1>
             <a href="/" class="menu-link">menu</a>
+        </div>
+        <div class="ui url-bar">
+            <div id="back" class="url-control-button"><i class="fa fa-arrow-left"></i></div><div id="forward" class="url-control-button"><i class="fa fa-arrow-right"></i></div>
+            <input class="url-input" name="url" type="text" />
         </div>
         <div class="ui ui-bottom">
             {% if max_level_progress == 3 %}
