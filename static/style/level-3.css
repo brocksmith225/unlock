@@ -1,0 +1,39 @@
+.pursue-navbar {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 80px;
+    width: 100vw;
+    background-color: rgb(18, 120, 204);
+    opacity: 0.9;
+    z-index: 2000;
+    padding: 10px 20px;
+    line-height: 60px;
+}
+
+.pursue-navbar .title {
+    font-size: 40px;
+    text-transform: uppercase;
+    font-family: "Roboto";
+    display: inline-block;
+    color: white;
+    height: 60px;
+    line-height: 60px;
+    vertical-align: middle;
+    margin-left: calc(50vw - 150px);
+}
+
+.pursue-navbar .title h1 {
+    display: inline;
+    vertical-align: middle;
+    height: 60px;
+    line-height: 60px;
+}
+
+#pursue-logo {
+    height: 60px;
+    width: 60px;
+    vertical-align: middle;
+    transform: translateY(-5px);
+}
