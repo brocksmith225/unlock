@@ -15,9 +15,9 @@
         <link rel="icon" href="/static/favicon.ico"/>
     </head>
     
-    <body class="scrollable">
+    <body>
         <nav class="pursue-navbar">
-            <a href="#"><div class="title">
+            <a href="/level-3/index"><div class="title">
                 <h1>Pursue</h1>
                 <svg id="pursue-logo" class="pursue-logo" width="500" height="500" xmlns="http://www.w3.org/2000/svg" viewBox="50 50 400 400">
                     <polygon id="background" points="0,0 0,500 500,500 500,0" fill="rgb(18, 120, 204)" style="display:none;" />
@@ -28,9 +28,23 @@
                     <text id="p" x="190" y="325" font-family="Roboto" font-size="200" fill="white">P</text>
                 </svg>
             </div></a>
-            <a href="/level-3/account"><i class="fa fa-user pursue-user-icon"></i></a>
         </nav>
         
+        <div class="pursue-account-center">
+            <div class="pursue-account-section">
+                <h1>Login</h1>
+                <form id="login-form" class="pursue-account-form">
+                    <label for="account">Account</label>
+                    <input name="account" type="text" placeholder="account" />
+                </form>
+            </div>
+            <div class="pursue-account-section">
+                <h1>Create Account</h1>
+                <form id="create-account-form" class="pursue-account-form">
+                    
+                </form>
+            </div>
+        </div>
         
         <script src="/static/vendor/jquery/jquery-3.2.1.min.js"></script>
         <script src="/static/vendor/tether/tether-1.3.3/dist/js/tether.min.js"></script>

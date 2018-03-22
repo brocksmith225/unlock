@@ -5,7 +5,7 @@
     left: 0;
     height: 80px;
     width: 100vw;
-    background-color: rgb(18, 120, 204);
+    background-color: #1278cc;
     opacity: 0.9;
     z-index: 2000;
     padding: 10px 20px;
@@ -29,6 +29,7 @@
     vertical-align: middle;
     height: 60px;
     line-height: 60px;
+    color: white;
 }
 
 #pursue-logo {
@@ -36,4 +37,66 @@
     width: 60px;
     vertical-align: middle;
     transform: translateY(-5px);
+}
+
+.pursue-user-icon {
+    font-size: 45px;
+    float: right;
+    color: white;
+    margin-top: 10px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.pursue-account-center {
+    width: 60vw;
+    height: 70vh;
+    margin-left: 20vw;
+    margin-top: calc(15vh + 40px);
+    border-radius: 30px;
+    background-color: #eee;
+    border: 3px solid #888;
+}
+
+.pursue-account-section {
+    width: calc(50% - 2px);
+    height: 100%;
+    display: inline-block;
+    padding: 20px;
+    float: right;
+}
+
+.pursue-account-section:first-child {
+    border-right: 3px solid #888;
+    float: left;
+}
+
+.pursue-account-section h1 {
+    text-transform: uppercase;
+    text-align: center;
+    border-bottom: 2px solid #292b2c;
+    padding-bottom: 5px;
+    font-size: 3vw;
+    overflow-y: hidden;
+}
+
+.pursue-account-section label {
+    font-size: 1.5vw;
+    display: block;
+    width: 100%;
+}
+
+.pursue-account-section input {
+    display: block;
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 1.2vw;
+}
+
+.pursue-account-section input:focus,
+.pursue-account-section input:active {
+    outline: none;
+    background-color: white;
+    box-shadow: -3px 0px rgb(2, 117, 216);
 }
