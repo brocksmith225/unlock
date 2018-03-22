@@ -12,3 +12,8 @@ function nextBackground() {
         nextBackground();
     }, 30000);
 }
+
+$(function() {
+    var target = $("#offerings .container");
+    $("#offerings-background").css({top:target.position().top, left:"calc(50vw - " + (target.outerWidth()/2) + "px)", width:target.outerWidth(), height:target.outerHeight()});
+});
