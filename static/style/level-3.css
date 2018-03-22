@@ -1,3 +1,12 @@
+body {
+    background: url("../img/pursue/pursue-1.JPG");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
 .pursue-navbar {
     display: block;
     position: fixed;
@@ -5,11 +14,20 @@
     left: 0;
     height: 80px;
     width: 100vw;
-    background-color: #1278cc;
-    opacity: 0.9;
     z-index: 2000;
     padding: 10px 20px;
     line-height: 60px;
+}
+
+.pursue-navbar-background {
+    background-color: #1278cc;
+    opacity: 0.6;
+    position: fixed;
+    display: block;
+    width: 100vw;
+    height: 80px;
+    top: 0;
+    left: 0;
 }
 
 .pursue-navbar .title {
@@ -48,14 +66,25 @@
     cursor: pointer;
 }
 
-.pursue-account-center {
+.pursue-account-center-background {
+    opacity: 0.8;
+    background-color: #eee;
     width: 60vw;
     height: 70vh;
-    margin-left: 20vw;
-    margin-top: calc(15vh + 40px);
+    position: fixed;
+    left: 20vw;
+    top: calc(15vh + 40px);
     border-radius: 30px;
-    background-color: #eee;
     border: 3px solid #888;
+}
+
+.pursue-account-center {
+    position: fixed;
+    width: 60vw;
+    height: 70vh;
+    left: 20vw;
+    top: calc(15vh + 40px);
+    border-radius: 30px;
 }
 
 .pursue-account-section {
@@ -99,4 +128,8 @@
     outline: none;
     background-color: white;
     box-shadow: -3px 0px rgb(2, 117, 216);
+}
+
+.pursue-account-section input[type="submit"] {
+    text-transform: uppercase;
 }

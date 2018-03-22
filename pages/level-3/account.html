@@ -16,6 +16,7 @@
     </head>
     
     <body>
+        <div class="pursue-navbar-background"></div>
         <nav class="pursue-navbar">
             <a href="/level-3/index"><div class="title">
                 <h1>Pursue</h1>
@@ -30,18 +31,28 @@
             </div></a>
         </nav>
         
+        <div class="pursue-account-center-background"></div>
         <div class="pursue-account-center">
             <div class="pursue-account-section">
                 <h1>Login</h1>
-                <form id="login-form" class="pursue-account-form">
+                <form id="pursue-login-form" class="pursue-account-form">
                     <label for="account">Account</label>
                     <input name="account" type="text" placeholder="account" />
+                    <label for="password">Password</label>
+                    <input name="password" type="password" placeholder="password" />
+                    <input class="btn btn-primary btn-block" type="submit" tabindex="-1" />
                 </form>
             </div>
             <div class="pursue-account-section">
                 <h1>Create Account</h1>
-                <form id="create-account-form" class="pursue-account-form">
-                    
+                <form id="pursue-create-account-form" class="pursue-account-form">
+                    <label for="account">Account</label>
+                    <input name="account" type="text" placeholder="account" />
+                    <label for="password">Password</label>
+                    <input name="password" type="password" placeholder="password" />
+                    <label for="confirm-password">Password</label>
+                    <input name="confirm-password" type="password" placeholder="confirm password" />
+                    <input class="btn btn-primary btn-block" type="submit" tabindex="-1" />
                 </form>
             </div>
         </div>
