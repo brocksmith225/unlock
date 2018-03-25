@@ -408,7 +408,7 @@ def info2():
 @login_required
 def level3Index():
     return render_template("level-3/index.html")
-    
+     
 @app.route("/level-3/<page>")
 @login_required
 def level3Subpage(page):
