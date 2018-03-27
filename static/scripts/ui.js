@@ -121,20 +121,30 @@ $(function() {
 });
 
 function updateURL(url) {
-    myHistory.goTo(url);
+    if (myHistory.current.value == "") {
+        myHistory.goTo(url);
+    }
     $("input[name='url']").val(url);
 }
 
+notDone = true;
+
 $("#page-loader").on("load", function() {
-    $("#back").click(function() {
-        $("#page-loader").get(0).contentWindow.location.replace(myHistory.back());
-    });
-    $("#forward").click(function() {
-        $("#page-loader").get(0).contentWindow.location.replace(myHistory.forward());
-    });
+    if (notDone) {
+        $("#back").click(function(e) {
+            e.stopPropagation();
+            $("#page-loader").get(0).contentWindow.location.replace(myHistory.back());
+        });
+        $("#forward").click(function() {
+            e.stopPropagation();
+            $("#page-loader").get(0).contentWindow.location.replace(myHistory.forward());
+        });
+        notDone = false;
+    }
 });
 
 $("input[name='url']").keypress(function(e) {
+    e.stopPropagation();
     if (e.which == 13) {
         myHistory.goTo($("input[name='url']").val());
         $("#page-loader").get(0).contentWindow.location.replace($("input[name='url']").val());
@@ -146,8 +156,10 @@ function LinkedList(url) {
     this.back = function() {
         if (this.current.hasBack()) {
             this.current = this.current.back;
+            return this.current.value;
+        } else {
+            return this.current.value;
         }
-        return this.current.value;
     };
     this.forward = function() {
         if (this.current.hasForward()) {
