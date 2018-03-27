@@ -105,6 +105,7 @@ class PursueUser(db.Model):
     
     account = db.Column(db.String(40), unique=True, primary_key=True)
     pwd = db.Column(db.String(64))
+    balance = db.Column(db.Integer, default=1000)
 
     def is_active(self):
         return True
@@ -433,11 +434,11 @@ def info2():
 @login_required
 def level3Index():
     return render_template("level-3/index.html")
-
-@app.route("/level-3/<page>")
+    
+@app.route("/level-3/account-control", methods=["POST"])
 @login_required
-def level3Subpage(page):
-    return render_template("level-3/" + page + ".html")
+def level3AccountControl():
+    return render_template("level-3/account-control.html")
     
 @app.route("/level-3/signin", methods=["POST"])
 @login_required
@@ -446,6 +447,7 @@ def level3SignIn():
     if user:
         if request.form["password"] == user.pwd:
             session["account"] = user.account
+            session["new"] = False
             return redirect(url_prefix + "level-3/account-control", code=307)
     return redirect(url_prefix + "level-3/account")
 
@@ -461,7 +463,13 @@ def level3SignUp():
     db.session.add(user)
     db.session.commit()
     session["account"] = user.account
+    session["new"] = True
     return redirect(url_prefix + "level-3/account-control", code=307)
+    
+@app.route("/level-3/<page>")
+@login_required
+def level3Subpage(page):
+    return render_template("level-3/" + page + ".html")
 #-----END THIRD LEVEL FUNCTIONALITY-----#
 
 
