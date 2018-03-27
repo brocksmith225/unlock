@@ -465,7 +465,7 @@ def level3SignUp():
     session["account"] = user.account
     session["new"] = True
     return redirect(url_prefix + "level-3/account-control", code=307)
-    
+
 @app.route("/level-3/<page>")
 @login_required
 def level3Subpage(page):
