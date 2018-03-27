@@ -99,6 +99,29 @@ class NileUser(db.Model):
     def get(user_id):
         return 1
         
+class PursueUser(db.Model):
+    
+    __tablename__ = "pursue_users"
+    
+    account = db.Column(db.String(40), unique=True, primary_key=True)
+    pwd = db.Column(db.String(64))
+
+    def is_active(self):
+        return True
+    
+    def is_authenticated(self):
+        return self.authenticated
+        
+    def is_anonymous(self):
+        return False
+    
+    def get_id(self):
+        return self.account
+        
+    @staticmethod
+    def get(user_id):
+        return 1
+        
 db.create_all()
 db.session.commit()
 
@@ -312,7 +335,7 @@ def info1():
     
 
 #-----SECOND LEVEL FUNCTIONALITY-----#
-@app.route("/level-2/index")
+@app.route("/level-2/index", methods=["GET", "POST"])
 @login_required
 def level2Index():
     conn = psycopg2.connect("dbname=unlock user=ubuntu")
@@ -326,9 +349,9 @@ def level2Index():
         items[i]["name"] = res[i][0]
         items[i]["price"] = res[i][1]
         items[i]["image"] = res[i][2]
-    if request.args.get("username") is None:
-        return render_template("level-2/index.html", items=items, count=len(items), username="anonymous")
-    return render_template("level-2/index.html", items=items, count=len(items), username=str(request.args.get("username")))
+    if (request.method == "POST"):
+        return render_template("level-2/index.html", items=items, count=len(items), username=str(session["account"]))
+    return render_template("level-2/index.html", items=items, count=len(items), username="anonymous")
 
 @app.route("/level-2/search", methods=["POST"])
 @login_required
@@ -371,7 +394,8 @@ def level2SignIn():
                 if int(current_user.progress) <= 2:
                     current_user.progress = 3
                 db.session.commit()
-            return redirect(url_prefix + "level-2/index?username=" + user.account)
+            session["account"] = user.account
+            return redirect(url_prefix + "level-2/index", code=307)
     return redirect(url_prefix + "level-2/index")
 
 @app.route("/level-2/signup", methods=["POST"])
@@ -385,7 +409,8 @@ def level2SignUp():
         return redirect(url_prefix + "level-2/index")
     db.session.add(user)
     db.session.commit()
-    return redirect(url_prefix + "level-2/index?username=" + user.account)
+    session["account"] = user.account
+    return redirect(url_prefix + "level-2/index", code=307)
 
 @app.route("/level-2/<page>")
 @login_required
@@ -413,6 +438,30 @@ def level3Index():
 @login_required
 def level3Subpage(page):
     return render_template("level-3/" + page + ".html")
+    
+@app.route("/level-3/signin", methods=["POST"])
+@login_required
+def level3SignIn():
+    user = PursueUser.query.get(request.form["account"])
+    if user:
+        if request.form["password"] == user.pwd:
+            session["account"] = user.account
+            return redirect(url_prefix + "level-3/account-control", code=307)
+    return redirect(url_prefix + "level-3/account")
+
+@app.route("/level-3/signup", methods=["POST"])
+@login_required
+def level3SignUp():
+    pwd = request.form["password"]
+    account = request.form["account"]
+    user = PursueUser(account=account, pwd=pwd)
+    db_user = PursueUser.query.get(account)
+    if db_user:
+        return redirect(url_prefix + "level-3/account")
+    db.session.add(user)
+    db.session.commit()
+    session["account"] = user.account
+    return redirect(url_prefix + "level-3/account-control", code=307)
 #-----END THIRD LEVEL FUNCTIONALITY-----#
 
 
