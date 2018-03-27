@@ -8,10 +8,19 @@ $("navbar ul li").click(function() {
     $("#email-display").addClass($(this).attr("data-category"));
 });
 
-$(".star-toggle").click(function() {
+$(".email-starred").each(function() {
+    $(this).children(".fa-star").removeClass("far");
+    $(this).children(".fa-star").addClass("fas");
+})
+
+$(".fa-star").click(function() {
     if ($(this).parent().hasClass("email-starred")) {
+        $(this).removeClass("fas");
+        $(this).addClass("far");
         $(this).parent().removeClass("email-starred");
     } else {
+        $(this).removeClass("far");
+        $(this).addClass("fas");
         $(this).parent().addClass("email-starred");
     }
     event.stopPropagation();

@@ -143,35 +143,25 @@ navbar ul li:hover {
     overflow: hidden;
 }
 
-.star-toggle {
+.fa-star {
     height: 30px;
     line-height: 30px;
     vertical-align: middle;
     display: inline-block;
     padding-top: 6px;
     margin-right: 10px;
+    margin-top: -15px;
     width: 20px;
 }
 
-.email-starred .star-toggle:before {
-    content: "\f005";
-}
-
-.email-sent .star-toggle,
-.email-drafts .star-toggle {
+.email-sent .fa-star,
+.email-drafts .fa-star {
     display: none;
 }
 
 .email-sent h3,
 .email-drafts h3 {
     width: 57vw;
-}
-
-.star-toggle:before {
-    content: "\f006";
-    font-size: 23px;
-    line-height: 30px
-    vertical-align: middle;
 }
 
 .email-full {
@@ -189,7 +179,7 @@ navbar ul li:hover {
     background-color: #f6f6f6;
 }
 
-.email-full .star-toggle {
+.email-full .fa-star {
     display: none;
 }
 

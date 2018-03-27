@@ -15,7 +15,7 @@ navbar h1 {
     padding-bottom: 13px;
 }
 
-navbar .fa-long-arrow-right {
+navbar .fa-long-arrow-alt-right {
     position: absolute;
     top: 42px;
     left: 45px;
@@ -96,7 +96,7 @@ navbar .search:before {
 }
 
 navbar .fa-shopping-cart {
-    font-size: 40px;
+    font-size: 34px;
     color: white;
     float: right;
     margin-top: 9px;
@@ -106,7 +106,7 @@ navbar .fa-shopping-cart {
 
 navbar .fa-circle {
     color: red;
-    font-size: 25px;
+    font-size: 22px;
     float: right;
     margin-right: -80px;
 }
