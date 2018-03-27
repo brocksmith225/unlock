@@ -185,7 +185,7 @@ def logout():
     db.session.add(user)
     db.session.commit()
     logout_user()
-    return "logged out"
+    return redirect(url_prefix)
 #-----END BASE WEBSITE FUNCTIONALITY-----#
 
    
