@@ -133,11 +133,15 @@ $("#page-loader").on("load", function() {
     if (notDone) {
         $("#back").click(function(e) {
             e.stopPropagation();
-            $("#page-loader").get(0).contentWindow.location.replace(myHistory.back());
+            var back = myHistory.back();
+            $("input[name='url']").val(back);
+            $("#page-loader").get(0).contentWindow.location.replace(back);
         });
         $("#forward").click(function() {
             e.stopPropagation();
-            $("#page-loader").get(0).contentWindow.location.replace(myHistory.forward());
+            var forward = myHistory.forward();
+            $("input[name='url']").val(forward);
+            $("#page-loader").get(0).contentWindow.location.replace(forward);
         });
         notDone = false;
     }
