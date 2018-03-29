@@ -5,7 +5,6 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     min-height: 100vh;
-    padding-top: 80px;
 }
 
 .pursue-navbar {
@@ -177,4 +176,36 @@ section {
     color: white;
     margin-top: 10vh;
     font-family: 'Permanent Marker', cursive;
+}
+
+.side-navbar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 250px;
+    background-color: #1278cc;
+}
+
+.account-name {
+    width: calc(90vw - 250px);
+    margin-left: 4.5vw;
+    text-align: center;
+    background-color: #1278cc;
+    text-transform: uppercase;
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 40px;
+    margin-bottom: 0;
+}
+
+.account-section {
+    width: calc(90vw - 250px);
+    height: calc(100vh - 214px);
+    margin-left: 4.5vw;
+    text-align: center;
+    background-color: white;
+    margin-top: 50px;
+    padding: 10px;
 }
