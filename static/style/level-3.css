@@ -174,7 +174,7 @@ section {
     text-align: center;
     font-size: 12vw;
     color: white;
-    margin-top: 10vh;
+    margin-top: calc(10vh + 80px);
     font-family: 'Permanent Marker', cursive;
 }
 

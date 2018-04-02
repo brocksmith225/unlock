@@ -438,7 +438,7 @@ def level3Index():
 @app.route("/level-3/account-control", methods=["POST"])
 @login_required
 def level3AccountControl():
-    return render_template("level-3/account-control.html")
+    return render_template("level-3/account-control.html", account=session["account"], new=session["new"], balance=PursueUser.query.get(session["account"]).balance)
     
 @app.route("/level-3/signin", methods=["POST"])
 @login_required

@@ -35,7 +35,7 @@
         <div class="pursue-account-center">
             <div class="pursue-account-section">
                 <h1>Login</h1>
-                <form id="pursue-login-form" class="pursue-account-form">
+                <form id="pursue-login-form" class="pursue-account-form" action="/level-3/signin" method="POST">
                     <label for="account">Account</label>
                     <input name="account" type="text" placeholder="account" />
                     <label for="password">Password</label>
@@ -56,6 +56,13 @@
                 </form>
             </div>
         </div>
+        
+        <form id="pursue-create-account-form-submit" style="display:none;" action="/level-3/signup" method="POST">
+                    <label for="account">Account</label>
+                    <input name="account" type="text" placeholder="account" />
+                    <label for="password">Password</label>
+                    <input name="password" type="password" placeholder="password" />
+                </form>
         
         <script src="/static/vendor/jquery/jquery-3.2.1.min.js"></script>
         <script src="/static/vendor/tether/tether-1.3.3/dist/js/tether.min.js"></script>
