@@ -438,7 +438,9 @@ def level3Index():
 @app.route("/level-3/account-control", methods=["POST"])
 @login_required
 def level3AccountControl():
-    return render_template("level-3/account-control.html", account=session["account"], new=session["new"], balance=PursueUser.query.get(session["account"]).balance)
+    b = PursueUser.query.get(session["account"]).balance
+    balance = "$" + "%.2f" % (b/100)
+    return render_template("level-3/account-control.html", account=session["account"], balance=balance)
     
 @app.route("/level-3/signin", methods=["POST"])
 @login_required
@@ -447,7 +449,6 @@ def level3SignIn():
     if user:
         if request.form["password"] == user.pwd:
             session["account"] = user.account
-            session["new"] = False
             return redirect(url_prefix + "level-3/account-control", code=307)
     return redirect(url_prefix + "level-3/account")
 
@@ -463,7 +464,6 @@ def level3SignUp():
     db.session.add(user)
     db.session.commit()
     session["account"] = user.account
-    session["new"] = True
     return redirect(url_prefix + "level-3/account-control", code=307)
 
 @app.route("/level-3/<page>")
