@@ -19,11 +19,21 @@
         <h1 class="account-name">Account: {{ account }}</h1>
         
         <section class="account-section">
-             
+            <div class="balance"><div class="balance-title">Balance</div><div class="balance-amount">$10.00</div></div>
         </section>
         
         <navbar class="side-navbar">
-            
+            <a href="index"><div class="title">
+                <h1>Pursue</h1>
+                <svg id="pursue-logo" class="pursue-logo" width="500" height="500" xmlns="http://www.w3.org/2000/svg" viewBox="50 50 400 400">
+                    <polygon id="background" points="0,0 0,500 500,500 500,0" fill="rgb(18, 120, 204)" style="display:none;" />
+                    <polygon points="145,50 345,50 345,145 55,145" fill="white" />
+                    <polygon points="450,145 450,345 355,345 355,55" fill="white" />
+                    <polygon points="345,450 155,450 155,355 445,355" fill="white" />
+                    <polygon points="50,345 50,155 145,155 145,445" fill="white" />
+                    <text id="p" x="190" y="325" font-family="Roboto" font-size="200" fill="white">P</text>
+                </svg>
+            </div></a>
         </navbar>
         
         <script src="/static/vendor/jquery/jquery-3.2.1.min.js"></script>
