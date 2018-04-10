@@ -440,7 +440,19 @@ def level3Index():
 def level3AccountControl():
     b = PursueUser.query.get(session["account"]).balance
     balance = "$" + "%.2f" % (b/100)
-    return render_template("level-3/account-control.html", account=session["account"], balance=balance)
+    conn = psycopg2.connect("dbname=unlock user=ubuntu")
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM pursue_actions;")
+    res = cur.fetchall()
+    cur.close()
+    conn.close()
+    actions = [dict() for x in range(len(res))]
+    for i in range(len(res)-1, -1, -1):
+        if str(res[i][0]) == str(session["account"]):
+            actions[i]["name"] = str(res[i][1])
+            actions[i]["type"] = str(res[i][2])
+            actions[i]["change"] = str(res[i][3])
+    return render_template("level-3/account-control.html", account=session["account"], balance=balance, actions=actions, count=len(actions))
     
 @app.route("/level-3/signin", methods=["POST"])
 @login_required

@@ -29,6 +29,13 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for i in range(count-1, -1, -1) %}
+                        <tr>
+                            <td class="account-actions-name">{{ actions[i]["name"] }}</td>
+                            <td class="account-actions-type">{{ actions[i]["type"] }}</td>
+                            <td class="account-actions-change">{{ actions[i]["change"] }}</td>
+                        </tr>
+                    {% endfor %}
                     <tr>
                         <td class="account-actions-name">Welcome Gift from Pursue</td>
                         <td class="account-actions-type">transfer</td>
