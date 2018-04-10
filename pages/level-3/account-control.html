@@ -20,6 +20,22 @@
         
         <section class="account-section">
             <div class="balance"><div class="balance-title">Balance</div><div class="balance-amount">$10.00</div></div>
+            <table class="account-actions">
+                <thead>
+                    <tr>
+                        <th class="account-actions-name">Name</th>
+                        <th class="account-actions-type">Type</th>
+                        <th class="account-actions-change">Change</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="account-actions-name">Welcome Gift from Pursue</td>
+                        <td class="account-actions-type">transfer</td>
+                        <td class="account-actions-change">+$10.00</td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
         
         <navbar class="side-navbar">
@@ -34,6 +50,8 @@
                     <text id="p" x="190" y="325" font-family="Roboto" font-size="200" fill="white">P</text>
                 </svg>
             </div></a>
+            <a href="start-transfer" class="btn btn-block pursue-transfer">TRANSFER</a>
+            <a href="index" class="btn btn-block pursue-logout">LOGOUT</a>
         </navbar>
         
         <script src="/static/vendor/jquery/jquery-3.2.1.min.js"></script>

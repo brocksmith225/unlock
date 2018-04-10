@@ -31,3 +31,11 @@ $("#pursue-create-account-form").submit(function(event) {
         $("#pursue-create-account-form input[name='confirm-password']").val("");
     }
 });
+
+$(".account-actions-change").each(function() {
+    if ($(this).html().includes("+")) {
+        $(this).addClass("positive");
+    } else if ($(this).html().includes("-")) {
+        $(this).addClass("negative");
+    }
+});
