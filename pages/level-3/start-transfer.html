@@ -32,27 +32,18 @@
         </nav>
         
         <div class="pursue-account-center-background"></div>
-        <div class="pursue-account-center">
-            <div class="pursue-account-section">
-                <h1>Login</h1>
-                <form id="pursue-login-form" class="pursue-account-form" action="/level-3/signin" method="POST">
-                    <label for="account">Account</label>
-                    <input name="account" type="text" placeholder="account" />
-                    <label for="password">Password</label>
-                    <input name="password" type="password" placeholder="password" />
-                    <input class="btn btn-primary btn-block" type="submit" />
+        <div class="pursue-transfer-center">
+            <div class="transfer-left">
+                <h2>Transfer to a Specific Account</h2>
+                <form class="specific-account-transfer" action="transfer" method="GET">
+                    <input type="text" name="account" class="form-control large-input" placeholder="account" />
+                    <input type="submit" class="form-control large-input" />
                 </form>
-            </div>
-            <div class="pursue-account-section">
-                <h1>Create Account</h1>
-                <form id="pursue-create-account-form" class="pursue-account-form">
-                    <label for="account">Account</label>
-                    <input name="account" type="text" placeholder="account" />
-                    <label for="password">Password</label>
-                    <input name="password" type="password" placeholder="password" />
-                    <label for="confirm-password">Password</label>
-                    <input name="confirm-password" type="password" placeholder="confirm password" />
-                    <input class="btn btn-primary btn-block" type="submit" />
+            </div><div class="transfer-middle"><h1>OR</h1>
+            </div><div class="transfer-right">
+                <h2>Transfer to a Random Account</h2>
+                <form class="random-account-transfer" action="transfer" method="GET">
+                    <input type="submit" class="form-control large-input" value="random" />
                 </form>
             </div>
         </div>

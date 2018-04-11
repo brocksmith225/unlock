@@ -7,6 +7,10 @@ body {
     min-height: 100vh;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 .pursue-navbar {
     display: block;
     position: fixed;
@@ -328,6 +332,82 @@ section {
     background-color: #f7f7f7;
 }
 
-a:hover {
-    text-decoration: none;
+.pursue-transfer-center {
+    position: fixed;
+    width: 60vw;
+    height: 70vh;
+    left: 20vw;
+    top: calc(15vh + 40px);
+    border-radius: 30px;
+    border: 3px solid #888;
+    vertical-align: top;
+}
+
+.pursue-transfer-center .transfer-left {
+    display: inline-block;
+    width: 39.5%;
+    height: 100%;
+    vertical-align: top;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    padding: 0 10px;
+}
+
+.pursue-transfer-center .transfer-left h2 {
+    text-align: center;
+    font-size: 2.4vw;
+    margin-top: calc(30vh - 2.4vw - 68px);
+    margin-bottom: 40px;
+}
+
+.pursue-transfer-center .transfer-middle {
+    display: inline-block;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    width: 20%;
+    height: 100%;
+    line-height: 100%;
+    text-transform: translateY(-70vh);
+    vertical-align: top;
+}
+
+.pursue-transfer-center .transfer-middle h1 {
+    font-size: 8vw;
+    margin: 0;
+    margin-top: calc(30vh - 4vw);
+    text-align: center;
+    font-weight: bold;
+}
+
+.pursue-transfer-center .transfer-right {
+    display: inline-block;
+    width: 39.5%;
+    height: 100%;
+    vertical-align: top;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    padding: 0 10px;
+}
+
+.pursue-transfer-center .transfer-right h2 {
+    text-align: center;
+    font-size: 2.4vw;
+    margin-top: calc(30vh - 2.4vw - 38px);
+    margin-bottom: 40px;
+}
+
+input.large-input {
+    font-size: 1.2vw;
+}
+
+.pursue-transfer-center input[type="submit"] {
+    background-color: #1278cc;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+}
+
+.pursue-transfer-center input[type="submit"]:hover {
+    background-color: #1172c1;
 }
