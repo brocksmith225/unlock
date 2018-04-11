@@ -11,6 +11,11 @@ a:hover {
     text-decoration: none;
 }
 
+input[type="text"],
+input[type="password"] {
+    background-color: #aaa;
+}
+
 .pursue-navbar {
     display: block;
     position: fixed;
