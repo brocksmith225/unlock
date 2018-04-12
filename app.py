@@ -453,7 +453,7 @@ def level3AccountControl():
             actions[i]["type"] = str(res[i][2])
             actions[i]["change"] = str(res[i][3])
     return render_template("level-3/account-control.html", account=session["account"], balance=balance, actions=actions, count=len(actions))
-    
+
 @app.route("/level-3/signin", methods=["POST"])
 @login_required
 def level3SignIn():
@@ -477,6 +477,11 @@ def level3SignUp():
     db.session.commit()
     session["account"] = user.account
     return redirect(url_prefix + "level-3/account-control", code=307)
+
+@app.route("/level-3/transfer")
+@login_required
+def level3Transfer():
+    return render_template("level-3/transfer.html", amount="$" + "%.2f" % float(request.args.get("amount")), account=request.args.get("account", default="a random account"))
 
 @app.route("/level-3/<page>")
 @login_required

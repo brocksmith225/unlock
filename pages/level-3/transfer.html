@@ -33,21 +33,8 @@
         
         <div class="pursue-account-center-background"></div>
         <div class="pursue-transfer-center">
-            <div class="transfer-left">
-                <h2>Transfer to a Specific Account</h2>
-                <form class="specific-account-transfer" action="transfer" method="GET">
-                    <input type="text" name="account" class="form-control large-input" placeholder="account" />
-                    <input type="number" name="amount" class="form-control large-input" placeholder="amount" />
-                    <input type="submit" class="form-control large-input" />
-                </form>
-            </div><div class="transfer-middle"><h1>OR</h1>
-            </div><div class="transfer-right">
-                <h2>Transfer to a Random Account</h2>
-                <form class="random-account-transfer" action="transfer" method="GET">
-                    <input type="number" name="amount" class="form-control large-input" placeholder="amount" />
-                    <input type="submit" class="form-control large-input" value="random" />
-                </form>
-            </div>
+            <h1 class="pursue-transfer-result">{{ amount }} successfully transfered to {{ account }}</h1>
+            <a href="account" class="btn btn-large btn-primary pursue-transfer-continue">Continue</a>
         </div>
         
         <script src="/static/vendor/jquery/jquery-3.2.1.min.js"></script>
