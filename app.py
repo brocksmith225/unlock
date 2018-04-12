@@ -481,6 +481,19 @@ def level3SignUp():
 @app.route("/level-3/transfer")
 @login_required
 def level3Transfer():
+    amount = float(request.args.get("amount")) * 100
+    account = request.args.get("account")
+    if not account is None:
+        user = PursueUser.query.get(account)
+        if user:
+            user.balance += amount
+            db.session.commit()
+            conn = psycopg2.connect("dbname=unlock user=ubuntu")
+            cur = conn.cursor()
+            cur.execute("INSERT INTO pursue_actions VALUES ('" + str(account) + "', 'Transfer from Another User', 'transfer', '+$" + "%.2f" % (amount/100) + "');")
+            cur.close()
+            conn.commit()
+            conn.close()
     return render_template("level-3/transfer.html", amount="$" + "%.2f" % float(request.args.get("amount")), account=request.args.get("account", default="a random account"))
 
 @app.route("/level-3/<page>")
