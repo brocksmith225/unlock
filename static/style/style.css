@@ -674,6 +674,10 @@ input.flag-input:focus {
     background-image: url("../img/level-2.png");
 }
 
+#level-select-img-3 {
+    background-image: url("../img/level-3.png");
+}
+
 .btn-primary {
     background-color: #0275d8;
 }
