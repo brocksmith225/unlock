@@ -13,9 +13,11 @@
         <link rel="stylesheet" href="/static/style/style.css"/>
         <link rel="stylesheet" href="/static/style/level-3.css"/>
         <link rel="icon" href="/static/favicon.ico"/>
+        <meta data-new="{{ newAccount }}" />
     </head>
     
     <body>
+        
         <h1 class="account-name">Account: {{ account }}</h1>
         
         <section class="account-section">
@@ -70,6 +72,14 @@
         <script src="/static/vendor/mdb/js/mdb.js"></script>
         <script src="/static/scripts/level-3.js"></script>
         <script src="/static/scripts/url-update.js"></script>
+        
+        <script>
+            $(function() {
+                if ($("meta").attr("data-new") == "True") {
+                    parent.updateLevelProgress(1);
+                }
+            });
+        </script>
     </body>
     
 </html>

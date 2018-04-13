@@ -113,6 +113,10 @@ function updateLevelProgress(progress) {
     }
 }
 
+function redirect(url) {
+    window.location.replace(url);
+}
+
 var myHistory;
 
 $(function() {

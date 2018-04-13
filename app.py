@@ -172,11 +172,6 @@ def login():
             login_user(user, remember=True)
             return redirect(url_prefix)
     return render_template("unsuccessful-login.html")
-    
-@app.route("/tutorial")
-@login_required
-def tutorial():
-    return ""
 
 @app.route("/logout")
 def logout():
@@ -452,7 +447,7 @@ def level3AccountControl():
             actions[i]["name"] = str(res[i][1])
             actions[i]["type"] = str(res[i][2])
             actions[i]["change"] = str(res[i][3])
-    return render_template("level-3/account-control.html", account=session["account"], balance=balance, actions=actions, count=len(actions))
+    return render_template("level-3/account-control.html", account=session["account"], newAccount=session["new"], balance=balance, actions=actions, count=len(actions))
 
 @app.route("/level-3/signin", methods=["POST"])
 @login_required
@@ -461,6 +456,7 @@ def level3SignIn():
     if user:
         if request.form["password"] == user.pwd:
             session["account"] = user.account
+            session["new"] = False
             return redirect(url_prefix + "level-3/account-control", code=307)
     return redirect(url_prefix + "level-3/account")
 
@@ -475,7 +471,11 @@ def level3SignUp():
         return redirect(url_prefix + "level-3/account")
     db.session.add(user)
     db.session.commit()
+    if int(current_user.level3_progress) <= 0:
+        current_user.level3_progress = 1
+        db.session.commit()
     session["account"] = user.account
+    session["new"] = True
     return redirect(url_prefix + "level-3/account-control", code=307)
 
 @app.route("/level-3/transfer")
@@ -483,9 +483,19 @@ def level3SignUp():
 def level3Transfer():
     amount = float(request.args.get("amount")) * 100
     account = request.args.get("account")
+    selfTransfer = False
+    if int(current_user.level3_progress) <= 1:
+        current_user.level3_progress = 2
+        db.session.commit()
     if not account is None:
         user = PursueUser.query.get(account)
         if user:
+            selfTransfer = True
+            if int(current_user.level3_progress) <= 2:
+                current_user.level3_progress = 3
+            if int(current_user.progress) <= 3:
+                current_user.progress = 4
+            db.session.commit()
             user.balance += amount
             db.session.commit()
             conn = psycopg2.connect("dbname=unlock user=ubuntu")
@@ -494,7 +504,7 @@ def level3Transfer():
             cur.close()
             conn.commit()
             conn.close()
-    return render_template("level-3/transfer.html", amount="$" + "%.2f" % float(request.args.get("amount")), account=request.args.get("account", default="a random account"))
+    return render_template("level-3/transfer.html", amount="$" + "%.2f" % float(request.args.get("amount")), account=request.args.get("account", default="a random account"), selfTransfer=selfTransfer)
 
 @app.route("/level-3/<page>")
 @login_required

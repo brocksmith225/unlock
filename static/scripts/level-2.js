@@ -170,5 +170,7 @@ $("body").click(function() {
 $(function() {
     if ($("meta").attr("data-username") == "realDonaldTrump") {
         parent.updateLevelProgress(4);
+        alert("Congrats!");
+        parent.redirect("level-2/info")
     }
 })

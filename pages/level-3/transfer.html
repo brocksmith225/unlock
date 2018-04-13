@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="/static/style/style.css"/>
         <link rel="stylesheet" href="/static/style/level-3.css"/>
         <link rel="icon" href="/static/favicon.ico"/>
+        <meta data-self-transfer="{{ selfTransfer }}" />
     </head>
     
     <body>
@@ -46,6 +47,17 @@
         <script src="/static/vendor/mdb/js/mdb.js"></script>
         <script src="/static/scripts/level-3.js"></script>
         <script src="/static/scripts/url-update.js"></script>
+        
+        <script>
+            $(function() {
+                parent.updateLevelProgress(2);
+                if ($("meta").attr("data-self-transfer") == "True") {
+                    parent.updateLevelProgress(3);
+                    alert("Congrats!");
+                    parent.redirect("level-3/info");
+                }
+            });
+        </script>
     </body>
     
 </html>
