@@ -506,6 +506,11 @@ def level3Transfer():
             conn.close()
     return render_template("level-3/transfer.html", amount="$" + "%.2f" % float(request.args.get("amount")), account=request.args.get("account", default="a random account"), selfTransfer=selfTransfer)
 
+@app.route("/level-3/info")
+@login_required
+def level3Info():
+    return render_template("info-pages/level-3.html")
+
 @app.route("/level-3/<page>")
 @login_required
 def level3Subpage(page):
