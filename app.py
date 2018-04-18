@@ -520,6 +520,16 @@ def level3Subpage(page):
 
 
 
+#-----FOURTH LEVEL FUNCTIONALITY-----#
+@app.route("/level-4/<page>")
+@login_required
+def level4Subpage(page):
+    return render_template("level-4/" + page + ".html")
+#-----END FOURTH LEVEL FUNCTIONALITY-----#
+
+
+
+
 #-----SCREENSHOT FUNCTIONALITY-----#
 @app.route("/screenshot/<page>")
 @login_required
