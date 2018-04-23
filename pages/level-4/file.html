@@ -19,34 +19,10 @@
         <navbar class="nav">
             <h1>SIR</h1>
         </navbar>
-        <div class="lower-nav"></div>
+        <div class="lower-nav"><a href="file" class="nav-item">File</a><div class="nav-item" id="refunds">Refunds</div></div>
         <img src="../static/img/american-flag.jpg" class="banner" />
         
-        <div class="sir-center">
-            <form class="sir-login sir-form" id="login-form">
-                <h1>Login</h1>
-                <input name="email" type="email" placeholder="email" />
-                <input name="password" type="password" placeholder="password" />
-                <input type="submit" value="submit" />
-                <div class="input-block">t</div>
-            </form><form class="sir-create-account sir-form" id="create-account-form">
-                <h1>Create Account</h1>
-                <input name="email" type="email" placeholder="email" />
-                <input name="password" type="password" placeholder="password" />
-                <input name="confirm-password" type="password" placeholder="confirm password" />
-                <input type="submit" value="submit" />
-            </form>
-        </div>
         
-        <form id="login-submit" style="display:none;" method="POST" action="/level-4/login">
-            <input class="form-control login-form-element" type="text" name="email" placeholder="account name" required/>
-            <input class="form-control login-form-element" type="text" name="password" placeholder="password" required/>
-        </form>
-        
-        <form id="create-account-submit" style="display:none;" method="POST" action="/level-4/create-account">
-            <input class="form-control login-form-element" type="text" name="email" placeholder="account name" required/>
-            <input class="form-control login-form-element" type="text" name="password" placeholder="password" required/>
-        </form>
         
         <script src="/static/vendor/jquery/jquery-3.2.1.min.js"></script>
         <script src="/static/vendor/tether/tether-1.3.3/dist/js/tether.min.js"></script>

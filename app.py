@@ -123,6 +123,30 @@ class PursueUser(db.Model):
     def get(user_id):
         return 1
         
+class SIRUser(db.Model):
+    
+    __tablename__ = "sir_user"
+    
+    email = db.Column(db.String(40))
+    pwd = db.Column(db.String(64))
+    uid = db.Column(db.Integer, primary_key=True)
+
+    def is_active(self):
+        return True
+    
+    def is_authenticated(self):
+        return self.authenticated
+        
+    def is_anonymous(self):
+        return False
+    
+    def get_id(self):
+        return self.email
+        
+    @staticmethod
+    def get(user_id):
+        return 1
+        
 db.create_all()
 db.session.commit()
 
@@ -525,6 +549,33 @@ def level3Subpage(page):
 @login_required
 def level4Subpage(page):
     return render_template("level-4/" + page + ".html")
+    
+@app.route("/level-4/login", methods=["POST"])
+@login_required
+def level3Login():
+    conn = psycopg2.connect("dbname=unlock user=ubuntu")
+    cur = conn.cursor()
+    cur.execute("SELECT uid FROM sir_users WHERE email='" + request.form["email"] + "';")
+    res = cur.fetchall()
+    cur.close()
+    conn.close()
+    user = SIRUser.query.get(res)
+    if user:
+        if request.form["password"] == user.pwd:
+            session["account"] = user.uid
+            return redirect(url_prefix + "level-4/file", code=307)
+    return redirect(url_prefix + "level-4/index")
+
+@app.route("/level-4/create-account", methods=["POST"])
+@login_required
+def level4CreateAccount():
+    pwd = request.form["password"]
+    email = request.form["email"]
+    user = SIRUser(email=email, pwd=pwd)
+    db.session.add(user)
+    db.session.commit()
+    session["account"] = user.uid
+    return redirect(url_prefix + "level-4/file", code=307)
 #-----END FOURTH LEVEL FUNCTIONALITY-----#
 
 
