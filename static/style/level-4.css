@@ -154,3 +154,39 @@ a:active {
     color: inherit;
     text-decoration: none;
 }
+
+.sir-lg-btn {
+    position: absolute;
+    font-size: 35px;
+    line-height: 35px;
+    padding: 25px;
+    background-color: white;
+    display: block;
+    width: 80vw;
+    color: #227dae;
+    box-shadow: 5px 5px 10px #444;
+    border: 1px solid #aaa;
+    top: calc(142px + 8vw);
+    left: 10vw;
+    text-align: center;
+    z-index: 100;
+}
+
+.sir-lg-btn:hover {
+    color: #227dae;
+    background-color: #f4f4f4;
+}
+
+.text {
+    display: block;
+    position: absolute;
+    font-size: 25px;
+    top: calc(250px + 16vw);
+    left: 10vw;
+    width: 80vw;
+    color: #227dae;
+    border: 1px solid #aaa;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 6px 6px 12px #888;
+}
