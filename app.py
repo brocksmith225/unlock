@@ -237,7 +237,7 @@ def level3():
 @login_required
 def level4():
     if int(current_user.progress) >= 4:
-        return render_template("ui.html", level="4", page="index", level_progress=current_user.level4_progress, max_level_progress=3, flag=True)
+        return render_template("ui.html", level="4", page="index", level_progress=current_user.level4_progress, max_level_progress=4, flag=True)
     return redirect(url_prefix)
 
 @app.route("/flag-check/<level>", methods=["POST"])
@@ -249,10 +249,16 @@ def flagCheck(level):
     cur.close()
     conn.close()
     if str(request.form["flag"]) == str(res[1]):
-        if int(current_user.level1_progress) <= 2:
-            current_user.level1_progress = 3
-        if int(current_user.progress) <= 1:
-            current_user.progress = 2
+        if str(level) == "1":
+            if int(current_user.level1_progress) <= 2:
+                current_user.level1_progress = 3
+            if int(current_user.progress) <= 1:
+                current_user.progress = 2
+        else:
+            if int(current_user.level4_progress) <= 3:
+                current_user.level4_progress = 4
+            if int(current_user.progress) <= 4:
+                current_user.progress = 5
         db.session.commit()
         return "true"
     return "false"
@@ -574,6 +580,9 @@ def level4CreateAccount():
     user = SIRUser(email=email, pwd=pwd)
     db.session.add(user)
     db.session.commit()
+    if int(current_user.level4_progress) <= 0:
+        current_user.level4_progress = 1
+        db.session.commit()
     session["account"] = user.uid
     return redirect(url_prefix + "level-4/file", code=307)
 #-----END FOURTH LEVEL FUNCTIONALITY-----#
