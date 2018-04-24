@@ -551,11 +551,6 @@ def level3Subpage(page):
 
 
 #-----FOURTH LEVEL FUNCTIONALITY-----#
-@app.route("/level-4/<page>")
-@login_required
-def level4Subpage(page):
-    return render_template("level-4/" + page + ".html")
-    
 @app.route("/level-4/login", methods=["POST"])
 @login_required
 def level3Login():
@@ -586,10 +581,34 @@ def level4CreateAccount():
     session["account"] = user.uid
     return redirect(url_prefix + "level-4/file", code=307)
     
+@app.route("/level-4/file", methods=["POST"])
+@login_required
+def level4File():
+    return render_template("level-4/file.html", account=session["account"])
+    
 @app.route("/level-4/info")
 @login_required
 def level4Info():
     return render_template("info-pages/level-4.html")
+    
+@app.route("/level-4/1040")
+@login_required
+def level41040():
+    if str(request.args.get("account")) == "0":
+        if int(current_user.level4_progress) <= 2:
+            current_user.level4_progress = 3
+            db.session.commit()
+        return render_template("level-4/1040-0.html")
+    else:
+        if int(current_user.level4_progress) <= 1:
+            current_user.level4_progress = 2
+            db.session.commit()
+    return render_template("level-4/1040-1.html")
+
+@app.route("/level-4/<page>")
+@login_required
+def level4Subpage(page):
+    return render_template("level-4/" + page + ".html")
 #-----END FOURTH LEVEL FUNCTIONALITY-----#
 
 

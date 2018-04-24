@@ -22,7 +22,7 @@
         <div class="lower-nav"><a href="file" class="nav-item">File</a><div class="nav-item" id="refunds">Refunds</div></div>
         <img src="../static/img/american-flag.jpg" class="banner" />
         
-        <a class="sir-lg-btn" href="">Start Your 1040 Form</a>
+        <a class="sir-lg-btn" href="1040?account={{ account }}">Start Your 1040 Form</a>
         
         <div class="text">Filing your taxes online through the Service for Internal Revenue makes filing your taxes easier than ever. Simply download your 1040 form here, fill in all of your information, and come back here to upload your final 1040 form. We promise we offer a completely secure platform for filing your taxes.</div>
         
@@ -35,6 +35,11 @@
         <script src="/static/vendor/mdb/js/mdb.js"></script>
         <script src="/static/scripts/level-4.js"></script>
         <script src="/static/scripts/url-update.js"></script>
+        <script>
+            $(function() {
+                parent.updateLevelProgress(1);
+            });
+        </script>
     </body>
     
 </html>
