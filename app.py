@@ -585,6 +585,11 @@ def level4CreateAccount():
         db.session.commit()
     session["account"] = user.uid
     return redirect(url_prefix + "level-4/file", code=307)
+    
+@app.route("/level-4/info")
+@login_required
+def level4Info():
+    return render_template("info-pages/level-4.html")
 #-----END FOURTH LEVEL FUNCTIONALITY-----#
 
 
