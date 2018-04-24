@@ -586,11 +586,6 @@ def level4CreateAccount():
 def level4File():
     return render_template("level-4/file.html", account=session["account"])
     
-@app.route("/level-4/info")
-@login_required
-def level4Info():
-    return render_template("info-pages/level-4.html")
-    
 @app.route("/level-4/1040")
 @login_required
 def level41040():
@@ -604,6 +599,11 @@ def level41040():
             current_user.level4_progress = 2
             db.session.commit()
     return render_template("level-4/1040-1.html")
+    
+@app.route("/level-4/info")
+@login_required
+def level4Info():
+    return render_template("info-pages/level-4.html")
 
 @app.route("/level-4/<page>")
 @login_required
