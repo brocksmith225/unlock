@@ -51,11 +51,8 @@
         </form>
         
         <div id="items">
-            <div class="item"><div class="preview-img" style="background-image: url('/static/img/level-1.png');"></div><h1>This Is One Item For Sale</h1><i class="fa fa-shopping-cart add-to-cart"></i><h2>$17.99</h2></div>
-            <div class="item"><div class="preview-img" style="background-image: url('/static/img/placeholder.png');"></div><h1>This Is Another Item For Sale</h1><i class="fa fa-shopping-cart add-to-cart"></i><h2>$1.99</h2></div>
-            <div class="item"><div class="preview-img" style="background-image: url('/static/img/logo.svg');"></div><h1>This Is The Last Item For Sale</h1><i class="fa fa-shopping-cart add-to-cart"></i><h2>$1,999.99</h2></div>
             {% for i in range(count-1, -1, -1) %}
-                {% autoescape false %}<div class="item"><div class="preview-img" style="background-image: url(&quot;/static/img/nile/items/{{ items[i]['image'] }}&quot;);"></div><h1>{{ items[i]["name"] }}</h1><i class="fa fa-shopping-cart add-to-cart"></i><h2>{{ items[i]["price"] }}</h2></div>{% endautoescape %}
+                {% autoescape false %}<div class="item"><div class="preview-img" style="background-image: url(&quot;../static/img/nile/{{ items[i]['image'] }}&quot;);"></div><h1>{{ items[i]["name"] }}</h1><i class="fa fa-shopping-cart add-to-cart"></i><h2>{{ items[i]["price"] }}</h2></div>{% endautoescape %}
             {% endfor %}
         </div>
         

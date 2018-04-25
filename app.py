@@ -364,9 +364,9 @@ def info1():
 @app.route("/level-2/index", methods=["GET", "POST"])
 @login_required
 def level2Index():
-    conn = psycopg2.connect("dbname=unlock user=ubuntu")
+    conn = psycopg2.connect("dbname=nile user=ubuntu")
     cur = conn.cursor()
-    cur.execute("SELECT * FROM nile_items;")
+    cur.execute("SELECT * FROM items;")
     res = cur.fetchall()
     cur.close()
     conn.close()
