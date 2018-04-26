@@ -471,13 +471,15 @@ def level3AccountControl():
     res = cur.fetchall()
     cur.close()
     conn.close()
+    count = 0
     actions = [dict() for x in range(len(res))]
     for i in range(len(res)-1, -1, -1):
         if str(res[i][0]) == str(session["account"]):
             actions[i]["name"] = str(res[i][1])
             actions[i]["type"] = str(res[i][2])
             actions[i]["change"] = str(res[i][3])
-    return render_template("level-3/account-control.html", account=session["account"], newAccount=session["new"], balance=balance, actions=actions, count=len(actions))
+            count += 1
+    return render_template("level-3/account-control.html", account=session["account"], newAccount=session["new"], balance=balance, actions=actions, count=count)
 
 @app.route("/level-3/signin", methods=["POST"])
 @login_required
