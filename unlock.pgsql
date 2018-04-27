@@ -258,13 +258,7 @@ Laser Emporium Order	Your Order:<br/><br/>Laser..........$27.18<br/>---x1000<br/
 --
 
 COPY bmail_users (account, pwd) FROM stdin;
-brocksmith225	d4ab234a5ba4cd586fae9557a0f1ab322f4322819657ffd840b6f1632a93d15a
 dev.team	5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
-Lasers	985c7faaa3b8a8501604d8a24622c3a8d87e4a52d6e1f2b16942b9ab26528542
-Laser	5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
-test account	9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08
-bob	5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
-test	9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08
 \.
 
 
@@ -282,9 +276,7 @@ test	$17.99	test.png	test
 --
 
 COPY nile_users (account, pwd) FROM stdin;
-test	test
 realDonaldTrump	letmein
-dev.team	password
 \.
 
 
@@ -293,14 +285,6 @@ dev.team	password
 --
 
 COPY pursue_actions (account, name, type, change) FROM stdin;
-test	Transfer from Another User	transfer	+$10.00
-test	Transfer from Another User	transfer	+$10.00
-test	Transfer from Another User	transfer	+$100.00
-test	Transfer from Another User	transfer	+$10.00
-test	Transfer from Another User	transfer	+$10.00
-test	Transfer from Another User	transfer	+$10.00
-test4	Transfer from Another User	transfer	+$10.00
-test5	Transfer from Another User	transfer	+$5.00
 \.
 
 
@@ -309,14 +293,6 @@ test5	Transfer from Another User	transfer	+$5.00
 --
 
 COPY pursue_users (account, pwd, balance) FROM stdin;
-anothertest	test	1000
-peyton	hibrock	1000
-test	test	131000
-fulltest	test	1000
-test2	test	1000
-test3	test	1000
-test4	test	2000
-test5	test	1500
 \.
 
 
@@ -325,7 +301,6 @@ test5	test	1500
 --
 
 COPY sir_user (email, pwd, uid) FROM stdin;
-test@test.test	9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08	5
 \.
 
 
@@ -333,7 +308,7 @@ test@test.test	9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08	
 -- Name: sir_user_uid_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
 --
 
-SELECT pg_catalog.setval('sir_user_uid_seq', 5, true);
+SELECT pg_catalog.setval('sir_user_uid_seq', 6, true);
 
 
 --
@@ -402,11 +377,11 @@ COPY unlock_hints (level, progress, difficulty, hint) FROM stdin;
 
 COPY unlock_users (email, pwd, progress, authenticated, difficulty, level1_progress, level2_progress, level3_progress, level4_progress) FROM stdin;
 test@gmail.com	d4ab234a5ba4cd586fae9557a0f1ab322f4322819657ffd840b6f1632a93d15a	5	f	2	3	4	3	4
-brocksmith225@gmail.com	d4ab234a5ba4cd586fae9557a0f1ab322f4322819657ffd840b6f1632a93d15a	5	t	0	4	4	3	4
+brocksmith225@gmail.com	d4ab234a5ba4cd586fae9557a0f1ab322f4322819657ffd840b6f1632a93d15a	5	f	0	4	4	3	4
 pwpon500@gmail.com	2dc61f4a7b100b48c2a0ce96f647fa7b462f82f97f8f2dd1d467ac94e378d301	3	t	2	3	4	0	0
-pwpon501@gmail.com	774e4b426a97bdd221d4aee4649bdf5a7f2c6231de354a829e70aa3c4a31efe5	1	f	0	0	0	0	0
 bigboy@yahoo.net	c4f7423836870a23ce9b19f09777e77eb919c680f1d606776b4cb18e2a9fc1a2	1	f	0	0	0	0	0
 Kevin.ngo0407@gmail.com	13004d8331d779808a2336d46b3553d1594229e2bb696a8e9e14554d82a648da	1	t	2	2	0	0	0
+pwpon501@gmail.com	d4ab234a5ba4cd586fae9557a0f1ab322f4322819657ffd840b6f1632a93d15a	5	t	2	3	4	3	4
 \.
 
 
