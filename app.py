@@ -309,7 +309,8 @@ def level1CreateAccount():
     if int(current_user.level1_progress) <= 0:
         current_user.level1_progress = 1
         db.session.commit()
-    return redirect(url_prefix + "level-1/inbox?account=" + user.account)
+    session["account"] = user.account
+    return redirect(url_prefix + "level-1/inbox", code=307)
 
 @app.route("/level-1/login", methods=["POST"])
 @login_required
