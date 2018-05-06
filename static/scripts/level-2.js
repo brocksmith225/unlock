@@ -89,7 +89,7 @@ $(".add-to-cart").click(function() {
 $("#search-button").click(function() {
     parent.updateLevelProgress(1);
     term = $("#search-input").val();
-    if (term.indexOf("'") > -1 || term.indexOf(";") > -1 || term.indexOf("--")) {
+    if (term.indexOf("'") > -1 || term.indexOf(";") > -1 || term.indexOf("--") > -1) {
         parent.updateLevelProgress(2);
     }
     $.post({
@@ -97,13 +97,11 @@ $("#search-button").click(function() {
         dataType: "text",
         data: $("#search-input").serialize(),
         success: function(result) {
-            console.log(result);
             result = result.replace(/'/g, '"');
             searchItems = $.parseJSON(result);
-            console.log(searchItems);
             $("#items").html("");
             for (i = 0; i < searchItems.length; i++) {
-                if (searchItems[i]["image"] == "letmein" || searchItems[i]["name"] || searchItems[i]["price"] ) {
+                if (searchItems[i]["image"] == "letmein" || searchItems[i]["name"] == "letmein" || searchItems[i]["price"] == "letmein" ) {
                     parent.updateLevelProgress(3);
                 }
                 $("#items").append('<div class="item"><div class="preview-img" style="background-image: url(&quot;../static/img/nile/' + searchItems[i]["image"] + '&quot;);"></div><h1>' + searchItems[i]["name"] + '</h1><i class="fa fa-shopping-cart add-to-cart"></i><h2>' + searchItems[i]["price"] + '</h2></div>');
@@ -115,7 +113,8 @@ $("#search-button").click(function() {
 $("#search-input").keypress(function(e) {
     if (e.which == 13) {
         parent.updateLevelProgress(1);
-        if (term.indexOf("'") > -1 || term.indexOf(";") > -1 || term.indexOf("--")) {
+        term = $("#search-input").val();
+        if (term.indexOf("'") > -1 || term.indexOf(";") > -1 || term.indexOf("--") > -1) {
             parent.updateLevelProgress(2);
         }
         $.post({
@@ -123,13 +122,11 @@ $("#search-input").keypress(function(e) {
             dataType: "text",
             data: $("#search-input").serialize(),
             success: function(result) {
-                console.log(result);
                 result = result.replace(/'/g, '"');
                 searchItems = $.parseJSON(result);
-                console.log(searchItems);
                 $("#items").html("");
                 for (i = 0; i < searchItems.length; i++) {
-                    if (searchItems[i]["image"] == "letmein" || searchItems[i]["name"] || searchItems[i]["price"] ) {
+                    if (searchItems[i]["image"] == "letmein" || searchItems[i]["name"] == "letmein" || searchItems[i]["price"] == "letmein" ) {
                         parent.updateLevelProgress(3);
                     }
                     $("#items").append('<div class="item"><div class="preview-img" style="background-image: url(&quot;../static/img/nile/' + searchItems[i]["image"] + '&quot;);"></div><h1>' + searchItems[i]["name"] + '</h1><i class="fa fa-shopping-cart add-to-cart"></i><h2>' + searchItems[i]["price"] + '</h2></div>');
