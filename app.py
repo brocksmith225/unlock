@@ -9,12 +9,13 @@ import os, uuid, psycopg2
 app = Flask(__name__, template_folder='pages')
 login_manager = LoginManager()
 login_manager.init_app(app);
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://ubuntu:Unl0ck@localhost/unlock"
 app.config["SECRET_KEY"] = "something unique and secret"
 app.config['SESSION_TYPE'] = 'filesystem'
 db = SQLAlchemy(app)
 socketIO = SocketIO(app)
-url_prefix = "https://capstone-brocksmith225.c9users.io/"
+url_prefix = ""
 Session(app)
 
 
@@ -637,5 +638,5 @@ def screenshot2(folder, page):
 
 
 
-app.run(host="0.0.0.0", port=8080, debug=True)
+app.run(host="127.0.0.1", port=8080, debug=True)
 socketIO.run(app)
