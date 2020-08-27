@@ -37,7 +37,7 @@ $(".flag-check").click(function() {
     		    $(".flag-check").html("CHECK");
                 if (result == "true") {
                     alert("Congrats!");
-                    window.location.replace("https://capstone-brocksmith225.c9users.io/level-" + $("meta").attr("data-level") + "/info");
+                    window.location.replace("http://unlock.brockwsmith.com/level-" + $("meta").attr("data-level") + "/info");
                 } else {
                     $(".flag-input").val("");
                     alert("Incorrect");
@@ -65,7 +65,7 @@ $(".flag-input").keypress(function(e) {
                     if (result == "true") {
                         updateLevelProgress(3);
                         alert("Congrats!");
-                        window.location.replace("https://capstone-brocksmith225.c9users.io/level-" + $("meta").attr("data-level") + "/info");
+                        window.location.replace("https://unlock.brockwsmith.com/level-" + $("meta").attr("data-level") + "/info");
                     } else {
                         $(".flag-input").val("");
                         alert("Incorrect");
@@ -120,8 +120,8 @@ function redirect(url) {
 var myHistory;
 
 $(function() {
-    $("input[name='url']").val("https://capstone-brocksmith225.c9users.io/" + $("#page-loader").attr("src"));
-    myHistory = new LinkedList("https://capstone-brocksmith225.c9users.io/" + $("#page-loader").attr("src"));
+    $("input[name='url']").val("https://unlock.brockwsmith.com/" + $("#page-loader").attr("src"));
+    myHistory = new LinkedList("https://unlock.brockwsmith.com/" + $("#page-loader").attr("src"));
 });
 
 function updateURL(url) {

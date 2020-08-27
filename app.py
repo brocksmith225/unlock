@@ -15,7 +15,7 @@ app.config["SECRET_KEY"] = "something unique and secret"
 app.config['SESSION_TYPE'] = 'filesystem'
 db = SQLAlchemy(app)
 socketIO = SocketIO(app)
-url_prefix = ""
+url_prefix = "http://unlock.brockwsmith.com/"
 Session(app)
 
 
@@ -186,17 +186,20 @@ def createAccount():
     login_user(user, remember=True)
     return redirect(url_prefix)
     
-@app.route("/login", methods=["POST"])
+@app.route("/login", methods=["POST", "GET"])
 def login():
-    user = User.query.get(request.form["email"])
-    if user:
-        if request.form["password"] == user.pwd:
-            user.authenticated = True
-            db.session.add(user)
-            db.session.commit()
-            login_user(user, remember=True)
-            return redirect(url_prefix)
-    return render_template("unsuccessful-login.html")
+    if request.method == "POST":
+        user = User.query.get(request.form["email"])
+        if user:
+            if request.form["password"] == user.pwd:
+                user.authenticated = True
+                db.session.add(user)
+                db.session.commit()
+                login_user(user, remember=True)
+                return redirect(url_prefix)
+        return render_template("unsuccessful-login.html")
+    if request.method == "GET":
+        return redirect(url_prefix)
 
 @app.route("/logout")
 def logout():
@@ -243,7 +246,7 @@ def level4():
 
 @app.route("/flag-check/<level>", methods=["POST"])
 def flagCheck(level):
-    conn = psycopg2.connect("dbname=unlock user=ubuntu")
+    conn = psycopg2.connect("dbname=unlock user=ubuntu password=Unl0ck")
     cur = conn.cursor()
     cur.execute("SELECT * FROM unlock_flags WHERE level=" + level + ";")
     res = cur.fetchone()
@@ -266,7 +269,7 @@ def flagCheck(level):
     
 @app.route("/get-hint/<level>", methods=["POST"])
 def getHint(level):
-    conn = psycopg2.connect("dbname=unlock user=ubuntu")
+    conn = psycopg2.connect("dbname=unlock user=ubuntu password=Unl0ck")
     cur = conn.cursor()
     if int(level) == 1:
         cur.execute("SELECT hint FROM unlock_hints WHERE level=1 AND progress=" + str(current_user.level1_progress) + " AND difficulty=" + str(current_user.difficulty) +";")
@@ -329,7 +332,7 @@ def level1Login():
 @app.route("/level-1/inbox", methods=["POST"])
 @login_required
 def level1Inbox():
-    conn = psycopg2.connect("dbname=unlock user=ubuntu")
+    conn = psycopg2.connect("dbname=unlock user=ubuntu password=Unl0ck")
     cur = conn.cursor()
     cur.execute("SELECT * FROM bmail_emails;")
     res = cur.fetchall()
@@ -366,7 +369,7 @@ def info1():
 @app.route("/level-2/index", methods=["GET", "POST"])
 @login_required
 def level2Index():
-    conn = psycopg2.connect("dbname=nile user=ubuntu")
+    conn = psycopg2.connect("dbname=nile user=ubuntu password=Unl0ck")
     cur = conn.cursor()
     cur.execute("SELECT * FROM items;")
     res = cur.fetchall()
@@ -392,7 +395,7 @@ def level2Search():
         if int(current_user.level2_progress) <= 1:
             current_user.level2_progress = 2
             db.session.commit()
-    conn = psycopg2.connect("dbname=nile user=ubuntu")
+    conn = psycopg2.connect("dbname=nile user=ubuntu password=Unl0ck")
     cur = conn.cursor()
     cur.execute("SELECT * FROM items WHERE tags LIKE '%" + term + "%';")
     res = cur.fetchall()
@@ -467,7 +470,7 @@ def level3Index():
 def level3AccountControl():
     b = PursueUser.query.get(session["account"]).balance
     balance = "$" + "%.2f" % (b/100)
-    conn = psycopg2.connect("dbname=unlock user=ubuntu")
+    conn = psycopg2.connect("dbname=unlock user=ubuntu password=Unl0ck")
     cur = conn.cursor()
     cur.execute("SELECT * FROM pursue_actions;")
     res = cur.fetchall()
@@ -532,7 +535,7 @@ def level3Transfer():
             db.session.commit()
             user.balance += amount
             db.session.commit()
-            conn = psycopg2.connect("dbname=unlock user=ubuntu")
+            conn = psycopg2.connect("dbname=unlock user=ubuntu password=Unl0ck")
             cur = conn.cursor()
             cur.execute("INSERT INTO pursue_actions VALUES ('" + str(account) + "', 'Transfer from Another User', 'transfer', '+$" + "%.2f" % (amount/100) + "');")
             cur.close()
@@ -558,7 +561,7 @@ def level3Subpage(page):
 @app.route("/level-4/login", methods=["POST"])
 @login_required
 def level3Login():
-    conn = psycopg2.connect("dbname=unlock user=ubuntu")
+    conn = psycopg2.connect("dbname=unlock user=ubuntu password=Unl0ck")
     cur = conn.cursor()
     cur.execute("SELECT uid FROM sir_users WHERE email='" + request.form["email"] + "';")
     res = cur.fetchall()
